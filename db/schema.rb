@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_104313) do
+ActiveRecord::Schema.define(version: 2020_08_25_163951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(version: 2020_08_25_104313) do
     t.bigint "menu_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "dishe_id", null: false
-    t.index ["dishe_id"], name: "index_categories_on_dishe_id"
     t.index ["menu_id"], name: "index_categories_on_menu_id"
   end
 
@@ -33,6 +31,8 @@ ActiveRecord::Schema.define(version: 2020_08_25_104313) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "order_dishe_id", null: false
+    t.bigint "categorie_id", null: false
+    t.index ["categorie_id"], name: "index_dishes_on_categorie_id"
     t.index ["menu_id"], name: "index_dishes_on_menu_id"
     t.index ["order_dishe_id"], name: "index_dishes_on_order_dishe_id"
   end
@@ -95,8 +95,8 @@ ActiveRecord::Schema.define(version: 2020_08_25_104313) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "categories", "dishes", column: "dishe_id"
   add_foreign_key "categories", "menus"
+  add_foreign_key "dishes", "categories", column: "categorie_id"
   add_foreign_key "dishes", "menus"
   add_foreign_key "dishes", "order_dishes", column: "order_dishe_id"
   add_foreign_key "menus", "categories"
