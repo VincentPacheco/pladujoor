@@ -1,5 +1,6 @@
 class DishesController < ApplicationController
   def index
+    @dishes = Dishe.all
   end
 
   def show
