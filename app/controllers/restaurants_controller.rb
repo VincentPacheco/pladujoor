@@ -20,6 +20,7 @@ class RestaurantsController < ApplicationController
       render restaurant_path(@restaurant)
     else
       render "new"
+    end
   end
 
   def destroy
