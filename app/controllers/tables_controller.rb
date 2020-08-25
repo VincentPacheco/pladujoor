@@ -1,6 +1,6 @@
 class TablesController < ApplicationController
   def index
-    @tables = Table.all
+    @tables = policy_scope(Table)
   end
 
   def show
