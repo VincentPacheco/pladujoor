@@ -11,6 +11,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+    @category.menu = @menu
     authorize @category
     @category.user = current_user
     if @category.save!
@@ -44,5 +45,8 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end
-end
+
+  def set_menu
+    @menu = Menu.find(params[:menu_id])
+  end
 end
