@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   def index
-    @Restaurants = Restaurant.all
+    @Restaurants = policy_scope(Restaurant)
   end
 
   def show

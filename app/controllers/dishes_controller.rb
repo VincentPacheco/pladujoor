@@ -1,6 +1,6 @@
 class DishesController < ApplicationController
   def index
-    @dishes = Dishe.all
+    @dishes = policy_scope(Dishe)
   end
 
   def show
