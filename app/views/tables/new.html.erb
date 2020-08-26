@@ -1,3 +1,7 @@
 <h1>Tables#new</h1>
-<p>Find me in app/views/tables/new.html.erb</p>
 <%= render "shared/table_form", table: @table %>
+<%= form_for ([ @restaurant, @table ]) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>
