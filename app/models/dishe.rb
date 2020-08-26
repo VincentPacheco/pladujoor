@@ -1,5 +1,5 @@
 class Dishe < ApplicationRecord
   has_many :order_dishes
-  has_one :category
-  has_one :restaurant
+  belongs_to :category, optional: true
+  belongs_to :restaurant, optional: true
 end
