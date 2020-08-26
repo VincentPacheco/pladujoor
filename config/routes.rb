@@ -41,13 +41,11 @@ Rails.application.routes.draw do
   resources :restaurants do
     resources :menus do
       resources :categories do
-        resources :dishes
       end
     end
+    resources :dishes
     resources :orders
-    resources :customers do
-      resources :orders
-    end
+    resources :customers
   end
 
   resources :orders
