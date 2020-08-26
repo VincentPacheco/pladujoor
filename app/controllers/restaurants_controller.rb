@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   def index
-    @Restaurants = policy_scope(Restaurant)
+    @restaurants = policy_scope(Restaurant)
   end
 
   def show
@@ -17,7 +17,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
     authorize @restaurant
     if @restaurant.save!
-      render restaurant_path(@restaurant)
+      redirect_to restaurant_path(@restaurant)
     else
       render "new"
     end
