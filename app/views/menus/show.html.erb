@@ -1,2 +1,11 @@
-<h1>Menus#show</h1>
-<p>Find me in app/views/menus/show.html.erb</p>
+<div class="container">
+  <h1>Menus#show</h1>
+  <p>Find me in app/views/menus/show.html.erb</p>
+    <div><%= @menu.name %></div>
+    <% @menu.categories.each do |category| %>
+      <div><%= category.name %></div>
+      <% category.dishes.each do |dish| %>
+        <div>name: <%= dish.name %>  price: <%= dish.price %></div>
+      <% end %>
+    <% end %>
+</div>
