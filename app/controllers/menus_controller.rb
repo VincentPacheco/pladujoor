@@ -1,6 +1,7 @@
 class MenusController < ApplicationController
   def index
-    @menus = policy_scope(Menu)
+    @manus = policy_scope(Menu)
+    @menus = @manus.where(restaurant_id: params[:restaurant_id])
   end
 
   def show

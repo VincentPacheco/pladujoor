@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
     @category.menu = @menu
     authorize @category
     if @category.save!
-      redirect_to restaurant_menu_categories_path
+      redirect_to restaurant_menu_path(@menu.restaurant, @menu)
     else
       render 'new'
     end
