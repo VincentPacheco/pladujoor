@@ -10,21 +10,28 @@ class DishesController < ApplicationController
 
   def new
     @restaurant = Restaurant.find(params[:restaurant_id])
-    @menu = Menu.find(params[:menu_id])
-    @category = Category.find(params[:category_id])
+    if @menu != nil
+      @menu = Menu.find(params[:menu_id])
+    end
+    if @category != nil
+      @category = Category.find(params[:category_id])
+    end
     @dishe = Dishe.new
     authorize @dishe
   end
 
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
-    @menu = Menu.find(params[:menu_id])
+    if @menu != nil
+      @menu = Menu.find(params[:menu_id])
+    end
     @dishe = Dishe.new(dishe_params)
-    @category = Category.find(params[:category_id])
-    @dishe.category = @category
+    @category = Category.find(1).id
+    @dishe.category_id = @category
+    @dishe.restaurant = @restaurant
     authorize @dishe
     if @dishe.save!
-      redirect_to restaurant_menu_category_dishes_path
+      redirect_to restaurant_dishes_path
     else
       render "new"
     end
