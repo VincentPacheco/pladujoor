@@ -1,5 +1,5 @@
-class DishePolicy < ApplicationPolicy
-  def index?
+class MenuPolicy < ApplicationPolicy
+    def index?
     record.user == user
   end
 

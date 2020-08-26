@@ -18,7 +18,7 @@ class TablesController < ApplicationController
     @table = Table.new(table_params)
     @table.restaurant = @restaurant
     if @table.save!
-      render tables_path
+      redirect_to tables_path
     else
       render 'new'
     end

@@ -1,3 +1,12 @@
 <h1>Dishes#new</h1>
 <p>Find me in app/views/dishes/new.html.erb</p>
-<%= render "shared/dishe_form", dishe: @dishe %>
+<%#= render "shared/dishe_form", dishe: @dishe%>
+<%= form_for ([ @restaurant, @menu, @category, @dishe ]) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :ingredient %>
+  <%= f.text_field :ingredient %>
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+  <%= f.submit %>
+<% end %>

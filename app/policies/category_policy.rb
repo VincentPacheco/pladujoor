@@ -1,4 +1,4 @@
-class DishePolicy < ApplicationPolicy
+class CategoryPolicy < ApplicationPolicy
   def index?
     record.user == user
   end

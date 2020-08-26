@@ -1,4 +1,5 @@
 class Restaurant < ApplicationRecord
-  belongs_to :menu
-  belongs_to :table
+  has_many :menus
+  has_many :tables
+  has_many :dishes, through: :menu
 end

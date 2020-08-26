@@ -1,21 +1,26 @@
 class CategoriesController < ApplicationController
+  def index
+    @categories = policy_scope(Category)
+  end
   def show
     @category = Category.find(params[:id])
     authorize @category
   end
 
   def new
-    @category = current_user.categorys.new
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @menu = Menu.find(params[:menu_id])
+    @category = Category.new
     authorize @category
   end
 
   def create
     @category = Category.new(category_params)
+    @menu = Menu.find(params[:menu_id])
     @category.menu = @menu
     authorize @category
-    @category.user = current_user
     if @category.save!
-      redirect_to category_path(@category)
+      redirect_to restaurant_menu_categories_path
     else
       render 'new'
     end

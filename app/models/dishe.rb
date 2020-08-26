@@ -1,4 +1,4 @@
 class Dishe < ApplicationRecord
-  belongs_to :order_dishe
-  belongs_to :menu
+  has_many :order_dishes
+  belongs_to :category
 end
