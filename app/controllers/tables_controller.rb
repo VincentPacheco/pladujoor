@@ -9,6 +9,7 @@ class TablesController < ApplicationController
   end
 
   def new
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @table = Table.new
     authorize @table
   end
