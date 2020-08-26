@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_165615) do
+ActiveRecord::Schema.define(version: 2020_08_25_225244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,14 +27,10 @@ ActiveRecord::Schema.define(version: 2020_08_25_165615) do
     t.string "name"
     t.text "ingredient"
     t.integer "price"
-    t.bigint "menu_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "order_dishe_id", null: false
-    t.bigint "categorie_id", null: false
-    t.index ["categorie_id"], name: "index_dishes_on_categorie_id"
-    t.index ["menu_id"], name: "index_dishes_on_menu_id"
-    t.index ["order_dishe_id"], name: "index_dishes_on_order_dishe_id"
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_dishes_on_category_id"
   end
 
   create_table "menus", force: :cascade do |t|
@@ -42,8 +38,6 @@ ActiveRecord::Schema.define(version: 2020_08_25_165615) do
     t.bigint "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "category_id", null: false
-    t.index ["category_id"], name: "index_menus_on_category_id"
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 
@@ -92,10 +86,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_165615) do
   end
 
   add_foreign_key "categories", "menus"
-  add_foreign_key "dishes", "categories", column: "categorie_id"
-  add_foreign_key "dishes", "menus"
-  add_foreign_key "dishes", "order_dishes", column: "order_dishe_id"
-  add_foreign_key "menus", "categories"
+  add_foreign_key "dishes", "categories"
   add_foreign_key "menus", "restaurants"
   add_foreign_key "order_dishes", "dishes", column: "dishe_id"
   add_foreign_key "order_dishes", "orders"
