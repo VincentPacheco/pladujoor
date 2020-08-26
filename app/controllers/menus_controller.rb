@@ -5,6 +5,7 @@ class MenusController < ApplicationController
 
   def show
     @menu = Menu.find(params[:id])
+    @dishes = Dish.all
     authorize @menu
   end
 
