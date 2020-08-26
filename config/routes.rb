@@ -45,11 +45,7 @@ Rails.application.routes.draw do
     end
     resources :dishes
     resources :orders
-    resources :customers
   end
-
-  resources :orders
-
   resources :tables
 
 end
