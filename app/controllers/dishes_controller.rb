@@ -1,10 +1,10 @@
 class DishesController < ApplicationController
   def index
-    @dishes = policy_scope(Dishe)
+    @dishes = policy_scope(Dish)
   end
 
   def show
-    @dishe = Dishe.find(params[:id])
+    @dishe = Dish.find(params[:id])
     authorize @dishe
   end
 
@@ -16,7 +16,7 @@ class DishesController < ApplicationController
     if @category != nil
       @category = Category.find(params[:category_id])
     end
-    @dishe = Dishe.new
+    @dishe = Dish.new
     authorize @dishe
   end
 
@@ -25,7 +25,7 @@ class DishesController < ApplicationController
     if @menu != nil
       @menu = Menu.find(params[:menu_id])
     end
-    @dishe = Dishe.new(dishe_params)
+    @dishe = Dish.new(dishe_params)
     @category = Category.find(1).id
     @dishe.category_id = @category
     @dishe.restaurant = @restaurant
@@ -38,12 +38,12 @@ class DishesController < ApplicationController
   end
 
   def edit
-    @dishe = Dishe.find(params[:id])
+    @dishe = Dish.find(params[:id])
     authorize @dishe
   end
 
   def update
-    @dishe = Dishe.find(params[:id])
+    @dishe = Dish.find(params[:id])
     @dishe.save
     redirect_to dishe_path(@dishe)
   end
