@@ -1,11 +1,12 @@
 <div class="container">
   <h1>Menus#show</h1>
   <p>Find me in app/views/menus/show.html.erb</p>
-    <div><%= @menu.name %></div>
+    <div><%= @menu.name %> <%= link_to "add a category", new_restaurant_menu_category_path(@menu.restaurant, @menu)  %> <%#= link_to "add a dish", new_restaurant_dish_path(params[:restaurant_id])  %></div>
+    <%#= render "shared/newcat", menu: @menu %>
     <% @menu.categories.each do |category| %>
-      <div><%= category.name %></div>
+      <div><%= category.name %> <%= link_to "add a dish", new_restaurant_dish_path(params[:restaurant_id])  %></div>
       <% category.dishes.each do |dish| %>
-        <div>name: <%= dish.name %>  price: <%= dish.price %></div>
+        <div>name: <%= dish.name %>  price: <%= dish.price %> </div>
       <% end %>
     <% end %>
 </div>

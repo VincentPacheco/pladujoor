@@ -1,8 +1,10 @@
 <h1>Menus#index</h1>
 <p>Find me in app/views/menus/index.html.erb</p>
 <% @menus.each do |menu| %>
-  <%= menu.id %>
-  <%= menu.name %>
+  <div>
+    <%= link_to menu.id, restaurant_menu_path(menu.restaurant, menu) %>
+    <%= menu.name %>
+  </div>
 <% end %>
 
 <%= simple_form_for ([ @restaurant, @menu ]) do |f| %>

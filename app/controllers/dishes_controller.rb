@@ -4,11 +4,12 @@ class DishesController < ApplicationController
   end
 
   def show
-    @dishe = Dish.find(params[:id])
-    authorize @dishe
+    @dish = Dish.find(params[:id])
+    authorize @dish
   end
 
   def new
+    @dish = Dish.new
     @restaurant = Restaurant.find(params[:restaurant_id])
     if @menu != nil
       @menu = Menu.find(params[:menu_id])
@@ -16,8 +17,7 @@ class DishesController < ApplicationController
     if @category != nil
       @category = Category.find(params[:category_id])
     end
-    @dishe = Dish.new
-    authorize @dishe
+    authorize @dish
   end
 
   def create
@@ -25,12 +25,12 @@ class DishesController < ApplicationController
     if @menu != nil
       @menu = Menu.find(params[:menu_id])
     end
-    @dishe = Dish.new(dishe_params)
+    @dish = Dish.new(dish_params)
     @category = Category.find(1).id
-    @dishe.category_id = @category
-    @dishe.restaurant = @restaurant
-    authorize @dishe
-    if @dishe.save!
+    @dish.category_id = @category
+    @dish.restaurant = @restaurant
+    authorize @dish
+    if @dish.save!
       redirect_to restaurant_dishes_path
     else
       render "new"
@@ -38,14 +38,14 @@ class DishesController < ApplicationController
   end
 
   def edit
-    @dishe = Dish.find(params[:id])
-    authorize @dishe
+    @dish = Dish.find(params[:id])
+    authorize @dish
   end
 
   def update
-    @dishe = Dish.find(params[:id])
+    @dish = Dish.find(params[:id])
     @dishe.save
-    redirect_to dishe_path(@dishe)
+    redirect_to dish_path(@dish)
   end
 
   def destroy
@@ -53,7 +53,7 @@ class DishesController < ApplicationController
 
   private
 
-  def dishe_params
-    params.require(:dishe).permit( :name, :ingredient, :price)
+  def dish_params
+    params.require(:dish).permit(:name, :ingredient, :price)
   end
 end
