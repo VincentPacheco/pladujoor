@@ -1,2 +1,13 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<div class="form-container">
+  <div class ="form-border">
+    <div class="form">
+      <h2>Add a category</h2>
+      <br>
+        <%= simple_form_for(@travel) do |f| %>
+
+        <%= f.input :name, label: 'Name', placeholder: 'Type your new category' %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
