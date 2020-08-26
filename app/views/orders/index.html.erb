@@ -1,2 +1,18 @@
-<h1>Orders#index</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
+<div class="ordersh2">
+  <h2>Orders in progress</h2>
+</div>
+<div class="card-index" style="display: flex">
+  <% half = @orders.count / 2 %>
+  <div class="column">
+    <% @orders.each do |order| %>
+      <div class="card-full">
+        <% if policy(order).show? %>
+          <%= link_to order_path(order), class: "d-flex" do  %>
+            <div class="card-order-index">
+              <h1><%= order.name %></h1>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
