@@ -4,4 +4,8 @@ class OrderPolicy < ApplicationPolicy
       scope.all      
     end
   end
+
+  def new?
+    return true
+  end
 end

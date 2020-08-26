@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = current_user.orders.new
+    @order = Order.new
     authorize @order
   end
 
