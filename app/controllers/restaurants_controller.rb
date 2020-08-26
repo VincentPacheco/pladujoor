@@ -14,7 +14,9 @@ class RestaurantsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.user_id = @user.id
     authorize @restaurant
     if @restaurant.save!
       redirect_to restaurant_path(@restaurant)
