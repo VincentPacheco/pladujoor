@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_125952) do
+ActiveRecord::Schema.define(version: 2020_08_27_000855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 2020_08_26_125952) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["menu_id"], name: "index_categories_on_menu_id"
+  end
+
+  create_table "category_dishes", force: :cascade do |t|
+    t.bigint "dish_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_category_dishes_on_category_id"
+    t.index ["dish_id"], name: "index_category_dishes_on_dish_id"
   end
 
   create_table "dishes", force: :cascade do |t|
@@ -59,7 +68,9 @@ ActiveRecord::Schema.define(version: 2020_08_26_125952) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "status"
     t.text "description"
+    t.bigint "table_id", null: false
     t.index ["order_dishe_id"], name: "index_orders_on_order_dishe_id"
+    t.index ["table_id"], name: "index_orders_on_table_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -91,12 +102,15 @@ ActiveRecord::Schema.define(version: 2020_08_26_125952) do
   end
 
   add_foreign_key "categories", "menus"
+  add_foreign_key "category_dishes", "categories"
+  add_foreign_key "category_dishes", "dishes"
   add_foreign_key "dishes", "categories"
   add_foreign_key "dishes", "restaurants"
   add_foreign_key "menus", "restaurants"
   add_foreign_key "order_dishes", "dishes", column: "dishe_id"
   add_foreign_key "order_dishes", "orders"
   add_foreign_key "orders", "order_dishes", column: "order_dishe_id"
+  add_foreign_key "orders", "tables"
   add_foreign_key "restaurants", "users"
   add_foreign_key "tables", "restaurants"
 end
