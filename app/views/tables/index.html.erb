@@ -6,7 +6,7 @@
     <% @tables.each do |table| %>
       <div class="card-full">
         <% if policy(table).show? %>
-          <%= link_to table_path(table), class: "d-flex" do  %>
+          <%= link_to restaurant_table_path(restaurant_id: @restaurant.id, id: table.id), class: "d-flex" do  %>
             <div class="card-table-index">
               <h1><%= table.number %></h1>
               <!-- <p><%#= table.description %></p> -->

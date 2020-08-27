@@ -168,4 +168,23 @@
       </div>
     </div>
   </div>
+
+  
+<div class="container">
+  <h1>Welcome to <%= @restaurant.name%> </h1>
+    <div><%= @menu.name %> </div>
+    <%#= render "shared/newcat", menu: @menu %>
+    <%= simple_form_for [@restaurant, @table, @order] do |f| %>
+      <% @menu.categories.each do |category| %>
+        <h4><%= category.name %></h4>
+        <% category.dishes.each do |dish| %>
+          <div>name: <%= dish.name %>  price: <%= dish.price %> </div>
+          <%= simple_fields_for :order_dishes do |od| %>
+            <%= od.input dish.id, label: dish.name %>
+          <% end %> 
+        <% end %>
+      <% end %>
+      <%= f.submit %>
+    <% end %>
+  
 </div>

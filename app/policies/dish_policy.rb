@@ -11,8 +11,13 @@ class DishPolicy < ApplicationPolicy
     return true
   end
 
+  def edit?
+    return true
+  end
+
   def update?
-    record.user == user
+    return true
+    # record.user == user
     # - record: the travel passed to the `authorize` method in controller
     # - user:   the `current_user` signed in with Devise.
   end

@@ -12,4 +12,12 @@ class OrderPolicy < ApplicationPolicy
   def create?
     return true
   end
+
+  def show?
+    return true
+  end
+
+  def confirmation?
+    return true
+  end
 end

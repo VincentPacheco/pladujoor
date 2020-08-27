@@ -22,7 +22,7 @@ class MenusController < ApplicationController
     @menu.restaurant = @restaurant
     if @menu.save!
       redirect_to restaurant_menus_path
-    authorize @menu
+      authorize @menu
     else
       render 'new'
     end

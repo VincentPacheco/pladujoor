@@ -1,3 +1,8 @@
 <h1>Tables#show</h1>
 <p>Find me in app/views/tables/show.html.erb</p>
-<%= link_to "Delete", table_path(@table), method: :delete, data: { confirm: "Are you sure?" }  %>
+<%= link_to "Delete", restaurant_table_path(@table), method: :delete, data: { confirm: "Are you sure?" }  %>
+
+<%  @orders.each do | order | %>
+<p><%= table.order_id.number %></p>
+<p><%= table.order_id.description %></p>
+<% end %>
