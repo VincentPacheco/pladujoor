@@ -1,24 +1,21 @@
 header {
   background-color: white;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: $box-shadow;
   width: 100%;
+  margin-bottom: 25px;
+  padding: 10px 0;
+  text-align: center;
 }
 
-.header-center {
-    img {
-      height: 50px;
-      width: 100px;
+.header-center a {
+  color: #0087D3;
+  font-size: 30px;
+  padding-top: 12px;
+  font-weight: normal;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
   }
-    h1 {
-      font-family: 'Roboto', sans-serif;
-      color: #0087D3;
-      font-size: 30px;
-      padding-top: 12px;
-    }
 }
 
 
