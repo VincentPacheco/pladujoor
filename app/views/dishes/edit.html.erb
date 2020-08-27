@@ -1,1 +1,12 @@
-<%= render "shared/dishe_form", dishe: @dishe %>
+<h1>Dishes#new</h1>
+<p>Find me in app/views/dishes/new.html.erb</p>
+<%#= render "shared/dishe_form", dishe: @dishe%>
+<%= simple_form_for ([ @restaurant, @dish ]) do |f| %>
+
+  <%= f.input :name %>
+  <%= f.input :ingredient %>
+  <%= f.input :price %>
+  <%= f.association :category%>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit %>
+<% end %>
