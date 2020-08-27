@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
     @order.table_id = params[:table_id]
     authorize @order
     if @order.save!
-      redirect_to order_path(@order)
+      redirect_to tables_path(@order)
     else
       render 'new'
     end

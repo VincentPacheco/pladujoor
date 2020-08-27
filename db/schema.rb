@@ -74,23 +74,21 @@ ActiveRecord::Schema.define(version: 2020_08_27_102152) do
   end
 
   create_table "order_dishes", force: :cascade do |t|
-    t.bigint "dishe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "order_id", null: false
-    t.index ["dishe_id"], name: "index_order_dishes_on_dishe_id"
+    t.bigint "dish_id", null: false
+    t.index ["dish_id"], name: "index_order_dishes_on_dish_id"
     t.index ["order_id"], name: "index_order_dishes_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "number"
-    t.bigint "order_dishe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status"
     t.text "description"
     t.bigint "table_id", null: false
-    t.index ["order_dishe_id"], name: "index_orders_on_order_dishe_id"
     t.index ["table_id"], name: "index_orders_on_table_id"
   end
 
@@ -129,9 +127,8 @@ ActiveRecord::Schema.define(version: 2020_08_27_102152) do
   add_foreign_key "dishes", "categories"
   add_foreign_key "dishes", "restaurants"
   add_foreign_key "menus", "restaurants"
-  add_foreign_key "order_dishes", "dishes", column: "dishe_id"
+  add_foreign_key "order_dishes", "dishes"
   add_foreign_key "order_dishes", "orders"
-  add_foreign_key "orders", "order_dishes", column: "order_dishe_id"
   add_foreign_key "orders", "tables"
   add_foreign_key "restaurants", "users"
   add_foreign_key "tables", "restaurants"
