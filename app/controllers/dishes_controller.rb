@@ -1,6 +1,10 @@
 class DishesController < ApplicationController
   def index
-    @dishes = policy_scope(Dish)
+    if params[:query].present?
+      @dishes = policy_scope(Dish).where(name: params[:query])
+    else
+      @dishes = policy_scope(Dish)
+    end
   end
 
   def show

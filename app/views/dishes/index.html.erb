@@ -1,6 +1,13 @@
 <h1>Dishes#index</h1>
 <p>Find me in app/views/dishes/index.html.erb</p>
-
+<%= form_tag restaurant_dishes_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a meal"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
 <%  @dishes.each do | dish | %>
 <p><%= link_to dish.id,  restaurant_dish_path(dish.restaurant, dish) %><%= dish.name %></p>
 <% end %>
