@@ -1,0 +1,19 @@
+.top-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  h1 {
+    margin: 0;
+  }
+}
+
+.top-right {
+  display: flex;
+  flex-direction: row;
+  h4 {
+    color: black;
+    font-size: 16px;
+    font-weight: thin;
+  }
+}
