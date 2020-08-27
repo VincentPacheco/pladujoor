@@ -1,0 +1,62 @@
+.card-scroll {
+  // width: 80%;
+  margin: auto;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.cards-container {
+    display: flex;
+    overflow-x: scroll;
+}
+
+.textcontainer {
+  padding: 10px;
+  // width: 138px;
+  // height: 64px;
+}
+
+.dishimg {
+  width: 100%;
+  height: 106px;
+}
+
+.dishcard {
+  box-shadow: $box-shadow;
+  transition: 0.3s;
+  width: 40%;
+  // height: 169px;
+  margin: 0 15px 20px 0;
+  border-radius: 7px;
+  overflow: hidden;
+  flex-shrink: 0;
+  color: black;
+  h2 {
+    font-size: 16px;
+    font-weight: regular;
+    margin-bottom: 15px;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+h1 {
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  // margin-left: 20px;
+}
+
+.priceandbutton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.category-title h2 {
+  font-size: 18px;
+  font-weight: 20;
+}

@@ -1,0 +1,25 @@
+.footer {
+  color: #0087D3;
+  display: flex;
+  justify-content: space-evenly;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  box-shadow: $box-shadow-top;
+  padding: 10px 0;
+  background-color: white;
+  h3 {
+    margin: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+  }
+  i {
+    display: flex;
+    align-items:center;
+  }
+}
+
+
+// .fixfooter {
+//   min-height: calc(100vh - #{$navbarheight} - #{$footerheight})
+// }

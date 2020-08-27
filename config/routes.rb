@@ -11,4 +11,13 @@ Rails.application.routes.draw do
     end
     resources :dishes
   end
+  
+  resources :tables
+  get '/design', to: 'pages#design'
+
+  resources :orders, only: [] do
+    member do
+      get :confirmation
+    end
+  end
 end
