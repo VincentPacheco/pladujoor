@@ -1,12 +1,24 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+header {
+  background-color: white;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.header-center {
+    img {
+      height: 50px;
+      width: 100px;
+  }
+    h1 {
+      font-family: 'Roboto', sans-serif;
+      color: #0087D3;
+      font-size: 30px;
+      padding-top: 12px;
+    }
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
+

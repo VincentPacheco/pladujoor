@@ -49,5 +49,5 @@ Rails.application.routes.draw do
     resources :dishes
   end
   resources :tables
-
+  get '/design', to: 'pages#design'
 end
