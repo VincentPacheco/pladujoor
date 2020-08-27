@@ -4,4 +4,5 @@ class Dish < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :restaurant, optional: true
   has_many :category_dishes
+  has_one_attached :photo
 end
