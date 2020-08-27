@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :create, :show]
-
+  before_action :find_order, only: [ :name ]
   def index
     @orders = policy_scope(Order)
   end
@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.table_id = params[:table_id]
     params[:order_dishes].each do |id, qty|
-      qty.to_i.times do 
+      qty.to_i.times do
         OrderDish.create(dish_id: id, order: @order)
       end
     end
@@ -54,6 +54,8 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
+    @order = Order.find(params[:id])
+    authorize @order
   end
 
   private

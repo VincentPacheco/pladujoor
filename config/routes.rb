@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     end
     resources :dishes
   end
-  resources :orders, only: [] do 
-    member :confirmation
+  resources :orders, only: [] do
+    member do
+      get :confirmation
+    end
   end
 end
