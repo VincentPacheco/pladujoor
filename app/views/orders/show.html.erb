@@ -2,8 +2,13 @@
 <h2>Order n°<%= @order.id %></h2>
 <h3>Receipt</h3>
 
-<% @orderray.each do |dish| %>
-<%= dish[0] %> <%= dish[1] %>
+<% @priced_order.each do |dish| %>
+<ul>
+<%= dish[0] %> <%= dish[1] %> <%= dish[2] %>
+</ul>
 <% end %>
+
+<%= @totalprice %>
+
 
 

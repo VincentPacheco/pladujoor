@@ -7,8 +7,14 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @orderray = Hash.new(0)
-    @order.dishes.each { |dish| @orderray[dish.name] += 1 }
+  
+    @priced_order = @order.order_dishes
+                          .group_by { |order_dish| order_dish.dish.name }
+                          .map do |name, order_dishes|
+                            [order_dishes.count, name, order_dishes.reduce(0) { |sum, order_dish| sum + order_dish.dish.price }]
+                          end
+    
+    @totalprice = @order.order_dishes.reduce(0) { |sum, order_dish| sum + order_dish.dish.price }
     authorize @order
   end
 
