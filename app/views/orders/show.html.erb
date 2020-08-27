@@ -1,3 +1,9 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
-<p><%= @order.order_dishes.count %></p>
+<h1>Thank you for your order!</h1>
+<h2>Order n°<%= @order.id %></h2>
+<h3>Receipt</h3>
+
+<% @orderray.each do |dish| %>
+<%= dish[0] %> <%= dish[1] %>
+<% end %>
+
+
