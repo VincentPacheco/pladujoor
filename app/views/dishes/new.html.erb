@@ -6,7 +6,7 @@
   <%= f.input :name %>
   <%= f.input :ingredient %>
   <%= f.input :price %>
-
   <%= f.association :category%>
+  <%= f.input :photo, as: :file %>
   <%= f.submit %>
 <% end %>

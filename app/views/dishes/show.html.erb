@@ -1,2 +1,4 @@
 <h1>Dishes#show</h1>
 <p>Find me in app/views/dishes/show.html.erb</p>
+<%= cl_image_tag @dish.photo.key, height: 300, width: 400, crop: :fill %>
+<%= @dish.name %>

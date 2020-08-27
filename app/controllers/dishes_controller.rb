@@ -38,14 +38,16 @@ class DishesController < ApplicationController
   end
 
   def edit
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @dish = Dish.find(params[:id])
     authorize @dish
   end
 
   def update
     @dish = Dish.find(params[:id])
-    @dishe.save
-    redirect_to dish_path(@dish)
+    authorize @dish
+    @dish.save!
+    redirect_to restaurant_dish_path(@dish.restaurant, @dish)
   end
 
   def destroy
@@ -54,6 +56,6 @@ class DishesController < ApplicationController
   private
 
   def dish_params
-    params.require(:dish).permit(:name, :ingredient, :price)
+    params.require(:dish).permit(:name, :ingredient, :price, :photo)
   end
 end
