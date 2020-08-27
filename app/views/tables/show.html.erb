@@ -1,2 +1,3 @@
 <h1>Tables#show</h1>
 <p>Find me in app/views/tables/show.html.erb</p>
+<%= link_to "Delete", table_path(@table), method: :delete, data: { confirm: "Are you sure?" }  %>

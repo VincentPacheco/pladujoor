@@ -1,4 +1,4 @@
 class Table < ApplicationRecord
-  belongs_to :customer
+  has_many :orders
   belongs_to :restaurant
 end

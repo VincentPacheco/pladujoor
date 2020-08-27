@@ -11,14 +11,17 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @table = Table.find(params[:table_id])
     @order = Order.new
     authorize @order
   end
 
   def create
-    @order = order.new(order_params)
+    @order = Order.new(order_params)
+    # @order.order_dishes = @order_dishes
+    @order.table_id = params[:table_id]
     authorize @order
-    @order.user = current_user
     if @order.save!
       redirect_to order_path(@order)
     else
@@ -48,6 +51,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:number)
+    params.require(:order).permit(:number, :status, :description)
   end
 end

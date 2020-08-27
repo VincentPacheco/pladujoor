@@ -1,5 +1,5 @@
 <div class="tablesh2">
-  <h2>Tables in progress</h2>
+  <h2>Your tables</h2>
 </div>
 <div class="card-index" style="display: flex">
   <div class="column">
@@ -8,11 +8,13 @@
         <% if policy(table).show? %>
           <%= link_to table_path(table), class: "d-flex" do  %>
             <div class="card-table-index">
-              <h1><%= table.order.number %></h1>
-              <p><%= table.order.description %></p>
+              <h1><%= table.number %></h1>
+              <!-- <p><%#= table.description %></p> -->
             </div>
           <% end %>
         <% end %>
       </div>
     <% end %>
   </div>
+</div>
+<%= render "shared/table_form", restaurant: @restaurant, table: @table %>

@@ -43,8 +43,10 @@ Rails.application.routes.draw do
       resources :categories do
       end
     end
+    resources :tables do
+      resources :orders
+    end
     resources :dishes
-    resources :orders
   end
   resources :tables
 
