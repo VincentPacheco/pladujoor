@@ -7,6 +7,8 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @orderray = Hash.new(0)
+    @order.dishes.each { |dish| @orderray[dish.name] += 1 }
     authorize @order
   end
 
