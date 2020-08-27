@@ -3,11 +3,26 @@
 <h1>Restaurants#show</h1>
 <p>Find me in app/views/restaurants/show.html.erb</p>
 
+<div>Tables list</div>
 <% @restaurant.tables.each do |table| %>
   <div>
-    <%= table.number %>
+    <%= link_to table.number, restaurant_table_path(table.restaurant, table) %>
     <%  table.orders.each do |order| %>
-    <%= order.number %>
+    <%= link_to order.number, table_order_path(order.table, order) %>
     <% end %>
+  </div>
+<% end %>
+
+<div>Dishes list</div>
+<% @restaurant.dishes.each do |dish| %>
+  <div>
+    <%= link_to dish.name, restaurant_dish_path(dish.restaurant, dish) %>
+  </div>
+<% end %>
+
+<div>Menus list</div>
+<% @restaurant.menus.each do |menu| %>
+  <div>
+    <%= link_to menu.name, restaurant_menu_path(menu.restaurant, menu) %>
   </div>
 <% end %>
