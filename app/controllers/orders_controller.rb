@@ -1,29 +1,34 @@
 class OrdersController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:new, :create, :show]
+
   def index
     @orders = policy_scope(Order)
   end
 
   def show
     @order = Order.find(params[:id])
-    @order_dishe = OrderDishe.new
-    @order_dishes = @order.order_dishes.where(user: current_user)
     authorize @order
   end
 
   def new
     @restaurant = Restaurant.find(params[:restaurant_id])
+    @menu = @restaurant.menus.first
     @table = Table.find(params[:table_id])
     @order = Order.new
     authorize @order
   end
 
   def create
-    @order = Order.new(order_params)
-    # @order.order_dishes = @order_dishes
+    @order = Order.new
     @order.table_id = params[:table_id]
+    params[:order_dishes].each do |id, qty|
+      qty.to_i.times do 
+        OrderDish.create(dish_id: id, order: @order)
+      end
+    end
     authorize @order
     if @order.save!
-      redirect_to tables_path(@order)
+      redirect_to restaurant_table_order_path(@order.table.restaurant, @order.table, @order)
     else
       render 'new'
     end
@@ -46,6 +51,9 @@ class OrdersController < ApplicationController
     authorize @order
     @order.update(order_params)
     redirect_to order_path(@order)
+  end
+
+  def confirmation
   end
 
   private

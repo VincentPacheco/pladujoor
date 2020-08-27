@@ -6,7 +6,7 @@
     <% @orders.each do |order| %>
       <div class="card-full">
         <% if policy(order).show? %>
-          <%= link_to order_path(order), class: "d-flex" do  %>
+          <%= link_to restaurant_table_order_path(order.table.restaurant, order.table, order), class: "d-flex" do  %>
             <div class="card-order-index">
               <h1><%= order.number %></h1>
               <p><%= order.description %></p>

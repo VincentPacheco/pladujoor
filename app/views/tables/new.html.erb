@@ -1,5 +1,6 @@
 <h1>Restaurant</h1>
 <%= simple_form_for ([ @restaurant ]) do |f| %>
   <%= f.input :name %>
+  <%= f.input :description %>
   <%= f.submit %>
 <% end %>

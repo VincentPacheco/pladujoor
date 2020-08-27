@@ -8,7 +8,7 @@
   <div>
     <%= link_to table.number, restaurant_table_path(table.restaurant, table) %>
     <%  table.orders.each do |order| %>
-    <%= link_to order.number, table_order_path(order.table, order) %>
+    <%= link_to order.number, restaurant_table_order_path(order.table.restaurant, order.table, order) %>
     <% end %>
   </div>
 <% end %>
