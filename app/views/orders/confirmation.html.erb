@@ -1,8 +1,12 @@
 <div>Table: <%= @order.table_id %> </div>
 <div>Numéro de commande: <%= @order.id %> </div>
 
-<% @order.order_dishes.each do |orderdish| %>
 <div>
-  <%= orderdish.dish_id %> <%= Dish.find(orderdish.dish_id).name %> <%= Dish.find(orderdish.dish_id).price %>
+  <% @dishes.select('id, name, price').group('name').sum('price').each do |dish| %>
+    <div>
+      <% i = 0 while dish != nil do i + 1  end%>
+        <%= i %> <%= dish[0]  %> <%= dish[1]  %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
-<% end %>

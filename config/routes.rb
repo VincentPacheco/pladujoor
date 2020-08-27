@@ -7,13 +7,12 @@ Rails.application.routes.draw do
       resources :categories
     end
     resources :tables do
-      resources :orders
+      resources :orders, only: [] do
+        member do
+          get :confirmation
+        end
+      end
     end
     resources :dishes
-  end
-  resources :orders, only: [] do
-    member do
-      get :confirmation
-    end
   end
 end
