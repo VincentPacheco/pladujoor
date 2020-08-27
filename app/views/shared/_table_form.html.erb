@@ -1,5 +1,4 @@
-<%= form_for(table) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<%= simple_form_for ([ @restaurant, @table ]) do |f| %>
+
   <%= f.submit %>
 <% end %>
