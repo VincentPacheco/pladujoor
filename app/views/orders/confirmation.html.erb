@@ -1,0 +1,8 @@
+<div>Table: <%= @order.table_id %> </div>
+<div>Numéro de commande: <%= @order.id %> </div>
+
+<% @order.order_dishes.each do |orderdish| %>
+<div>
+  <%= orderdish.dish_id %> <%= Dish.find(orderdish.dish_id).name %> <%= Dish.find(orderdish.dish_id).price %>
+</div>
+<% end %>
