@@ -1,6 +1,7 @@
 class TablesController < ApplicationController
   def index
     @tables = policy_scope(Table)
+    @table = Table.new
   end
 
   def show
@@ -15,9 +16,15 @@ class TablesController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.find(params[:restaurant_id])
-    @table = Table.new(table_params)
-    @table.restaurant = @restaurant
+    @restaurant = current_user.restaurants
+    x = 1
+      while Table.find_by(number: x) != nil do
+      x += 1
+      end
+    @table = Table.new(number: x)
+    # @table = Table.new(table_params)
+    @table.restaurant = current_user.restaurants.first
+    authorize @table
     if @table.save!
       redirect_to tables_path
     else
@@ -27,8 +34,8 @@ class TablesController < ApplicationController
 
   def destroy
     @table = Table.find(params[:id])
-    authorize @table
     @table.destroy
+    authorize @table
     redirect_to tables_path
   end
 

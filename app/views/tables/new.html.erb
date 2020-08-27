@@ -1,7 +1,5 @@
 <h1>Restaurant</h1>
-<%= render "shared/table_form", table: @table %>
-<%= form_for ([ @restaurant ]) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<%= simple_form_for ([ @restaurant ]) do |f| %>
+  <%= f.input :name %>
   <%= f.submit %>
 <% end %>
