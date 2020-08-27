@@ -54,6 +54,7 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
+  end
 
   private
 
