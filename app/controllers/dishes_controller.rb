@@ -5,6 +5,7 @@ class DishesController < ApplicationController
   end
 
   def show
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @dish = Dish.find(params[:id])
     authorize @dish
   end

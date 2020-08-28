@@ -15,7 +15,9 @@
       <% category.dishes.each do |dish| %>
     <div class='dishcard' data-controller="change-qty">
       <% if dish.photo.attached? %>
-      <%= cl_image_tag dish.photo.key , :class => "dishimg" %>
+        <%= link_to restaurant_dish_path(@restaurant, dish) do %>
+          <%= cl_image_tag dish.photo.key , :class => "dishimg" %>
+        <% end %>
       <% end %>
         <div class="textcontainer">
           <h2><%= dish.name %></h2>
