@@ -1,10 +1,21 @@
+puts "Star destroying the Database..."
 Order.destroy_all
+puts "Orders destroyed!"
 Dish.destroy_all
+puts "Dishes destroyed!"
 Category.destroy_all
+puts "Categories destroyed!"
 Menu.destroy_all
+puts "Menus destroyed!"
 Table.destroy_all
+puts "Tables destroyed!"
 Restaurant.destroy_all
+puts "Restaurants destroyed!"
 User.destroy_all
+puts "Users destroyed!"
+puts "Everything is destroyed."
+puts "Now creating Database..."
+
 
 admin = User.create!(email: "boss1@test.com", password: "123123")
 
@@ -31,3 +42,5 @@ menu = Menu.create!(restaurant: restaurant, name: "Summer Menu")
     Dish.create!(name: "Mineral water", ingredient: nil, price: 12, category: cat, restaurant: restaurant)
   end
 end
+
+puts "Database created!"
