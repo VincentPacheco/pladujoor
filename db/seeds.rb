@@ -1,6 +1,6 @@
 require "open-uri"
 
-puts "Star destroying the Database..."
+puts "Destroying the Database..."
 Order.destroy_all
 puts "Orders destroyed!"
 Dish.destroy_all
@@ -24,7 +24,7 @@ admin = User.create!(email: "boss1@test.com", password: "123123")
 restaurant = Restaurant.create!(name: "Presto Fresco", user: admin)
 table = Table.create!(number: 7, restaurant: restaurant)
 menu = Menu.create!(restaurant: restaurant, name: "Summer Menu")
-%w[Starters Dishes Desserts].each do |cat_name|
+%w[Starters Dishes Desserts Drinks].each do |cat_name|
   cat = Category.create!(name: cat_name, menu: menu)
   if cat_name == "Starters"
     tomatoe = Dish.create!(name: "Tomatoes & Mozzarella",
