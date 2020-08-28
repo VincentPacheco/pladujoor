@@ -14,8 +14,9 @@
   <div class='cards-container'>
       <% category.dishes.each do |dish| %>
     <div class='dishcard'>
-      <%= image_tag "tomatesmozza.jpg", :class => "dishimg" %>
-
+      <% if dish.photo.attached? %>
+      <%= cl_image_tag dish.photo.key , :class => "dishimg" %>
+      <% end %>
         <div class="textcontainer">
           <h2><%= dish.name %></h2>
           <div class='priceandbutton'>
