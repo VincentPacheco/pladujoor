@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :categories
     end
     resources :tables do
-      resources :orders, only: [:index, :new, :create] do
+      resources :orders, only: [:index, :new, :create, :show] do
         member do
           get :confirmation
         end
