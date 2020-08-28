@@ -37,7 +37,8 @@ menu = Menu.create!(restaurant: restaurant, name: "Summer Menu")
 
     bruschetta = Dish.create!(name: "Garlic Bruschetta",
       ingredient: "Grilled bread, Tomatoes, Garlic, Basilic, Olive oil",
-      price: 7, category: cat,
+      price: 7, 
+      category: cat,
       restaurant: restaurant)
     bruschetta.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606070/Pladujoor/bruschetta_yvpmn2.jpg'), filename: 'bruschetta.jpg', content_type: 'image/jpg')
 
