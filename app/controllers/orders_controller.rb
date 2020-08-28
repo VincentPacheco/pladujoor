@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
     end
     authorize @order
     if @order.save!
-      redirect_to restaurant_table_order_path(@order.table.restaurant, @order.table, @order)
+      redirect_to confirmation_restaurant_table_order_path(@order.table.restaurant, @order.table, @order)
     else
       render 'new'
     end
