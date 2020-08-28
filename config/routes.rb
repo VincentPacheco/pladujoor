@@ -7,7 +7,11 @@ Rails.application.routes.draw do
       resources :categories
     end
     resources :tables do
-      resources :orders
+      resources :orders, only: [] do
+        member do
+          get :confirmation
+        end
+      end
     end
     resources :dishes
   end
@@ -15,9 +19,4 @@ Rails.application.routes.draw do
   resources :tables
   get '/design', to: 'pages#design'
 
-  resources :orders, only: [] do
-    member do
-      get :confirmation
-    end
-  end
 end

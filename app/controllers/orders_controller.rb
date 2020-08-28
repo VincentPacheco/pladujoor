@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create, :show]
+  skip_before_action :authenticate_user!, only: [:new, :create, :show, :confirmation ]
   before_action :find_order, only: [ :name ]
   def index
     @orders = policy_scope(Order)
@@ -63,6 +63,9 @@ class OrdersController < ApplicationController
 
   def confirmation
     @order = Order.find(params[:id])
+    @orderdishes = @order.order_dishes
+    # @dishes = Dish.find(@orderdishes).group(:dish_id).order('dish_id asc')
+    @dishes = @order.dishes
     authorize @order
   end
 
@@ -72,3 +75,7 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:number, :status, :description)
   end
 end
+
+
+
+
