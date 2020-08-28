@@ -1,13 +1,11 @@
 <div>Table: <%= @order.table_id %> </div>
 <div>Numéro de commande: <%= @order.id %> </div>
 <% x = 0 %>
-<div style="display: flex; margin: 10px"">
-  <div style="margin-right: 10px">
-    <% @order.order_dishes.select('dish_id').group('dish_id').each do |order| %>
-      <% order.dish_id %>
-      <% x = x + 1 %>
+<div style="display: flex; margin: 10px"" >
+  <div style="margin-right: 10px" >
+    <% @order.order_dishes.select('dish_id').group('dish_id').count.each do |order| %>
       <div>
-        <%= x %>
+        <%= order[1] %>
       </div>
     <% end %>
   </div>
@@ -19,5 +17,8 @@
     <% end %>
   </div>
 </div>
+  <div>
+    Total: <%= @dishes.select('id, name, price').sum('price') %> €
+  </div>
 
-<button>Pay</button>
+<%= link_to "Pay", root_path %>
