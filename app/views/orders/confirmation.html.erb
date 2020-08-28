@@ -1,28 +1,58 @@
-<p>Your dishes</p>
-<div>Table: <%= @order.table_id %> </div>
-<div>Numéro de commande: <%= @order.id %> </div>
-<% x = 0 %>
-<div style="display: flex; margin: 10px" >
-  <div style="margin-right: 10px" >
-    <% @order.order_dishes.select('dish_id').group('dish_id').count.each do |order| %>
-      <div>
-        <%= order[1] %>
-      </div>
-    <% end %>
-  </div>
-  <div>
-    <% @dishes.select('id, name, price').group('name').sum('price').each do |dish| %>
-      <div>
-        <%= dish[0]  %> <%= dish[1]  %>
-      </div>
-    <% end %>
+<div class='top-page'>
+  <h1>Presto Fresco</h1>
+    <div class='top-right'>
+      <h4 class="mr-2">Back</h4>
+      <a class="btn-plus" href="#"><i class="fas fa-angle-left"></i></a>
   </div>
 </div>
-  <div>
-    Total: <%= @dishes.select('id, name, price').sum('price') %> €
+
+
+<div class='summarycontainer'>
+  <div class='summarycontent'>
+    <div class='ordersummary'>
+      <h2>Summary</h2>
+      <h3>0rder: #<%= @order.id %> </h3>
+    </div>
+    <h4>Table <%= @order.table_id %></h4>
+    <% x = 0 %>
+    <div class='row textsize'>
+      <div class='col-6 orderborder'>
+        <h5>ARTICLES</h5>
+        <% @dishes.select('name').group('name').sum('price').each do |dish| %>
+          <div>
+            <%= truncate(dish[0], length: 17)%>
+          </div>
+        <% end %>
+      </div>
+      <div class='col-3 orderborder text-center'>
+        <h5>QTY</h5>
+        <% @order.order_dishes.select('dish_id').group('dish_id').count.each do |order| %>
+          <div>
+            <%= order[1] %>
+          </div>
+        <% end %>
+      </div>
+      <div class='col-3 text-center' >
+        <h5>PRICE</h5>
+        <% @dishes.select('id, price').group('name').sum('price').each do |dish| %>
+          <div>
+            <%= dish[1] %>€
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
+  <div class='summaryprice'>
+      <div><h2>Total:</h2></div>
+      <div><h2><%= @dishes.select('id, name, price').sum('price') %> €</h2></div>
+  </div>
+</div>
 
-<%= link_to "Continue my order", new_restaurant_table_order_path %>
-
-
-<%= link_to "Pay", restaurant_table_order_path %>
+<div class='btnorder'>
+  <div class='btncontinue'>
+    <%= link_to "CONTINUE", new_restaurant_table_order_path%>
+  </div>
+  <div class='btnpay'>
+      <%= link_to "PAY", restaurant_table_order_path%>
+  </div>
+</div>
