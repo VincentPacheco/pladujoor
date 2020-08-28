@@ -13,20 +13,19 @@
       <h2>Summary</h2>
       <h3>0rder: #<%= @order.id %> </h3>
     </div>
-    <h4>Table <%= @order.table_id %></h4>
-    <% x = 0 %>
+    <h4  class='pb-4'>Table <%= @order.table_id %></h4>
     <table>
     <thead><tr>
-    <th>ARTICLE</th>
-    <th>QTY</th>
-    <th>PRICE</th></tr>
+    <th class='col-6'>ARTICLE</th>
+    <th class='col-3'>QTY</th>
+    <th class='col-3'>PRICE</th></tr>
     </thead>
     <tbody>
     <% @priced_order.each do |order| %>
     <tr>
-      <td><%= truncate(order[1], length: 15)%></td>
-      <td><%= order[0] %></td>
-      <td><%= format "%0.2f", order[2] %></td>
+      <td class='col-6 orderborder'><%= truncate(order[1], length: 15)%></td>
+      <td class='col-3 orderborder'><%= order[0] %></td>
+      <td class='col-3'><%= format "%0.2f", order[2] %></td>
     </tr>
     <% end %>
     </tbody>
@@ -39,6 +38,6 @@
   </div>
 </div>
 
-<div class='lastp'>
+<div class='lastp text-center pt-4'>
 <p>Thank you for you order ! We hope to see you soon !</p>
 </div>
