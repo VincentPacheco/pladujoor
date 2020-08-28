@@ -13,6 +13,15 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+  after_action :store_history
+  def store_history
+      return unless request.get?
+      return if request.xhr?
+      session[:history] ||= []
+      session[:history] << request.fullpath
+      session[:history].delete_at 0 if session[:history].size == 6
+  end
+
   private
 
   def skip_pundit?

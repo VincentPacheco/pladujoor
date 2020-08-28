@@ -2,7 +2,9 @@
   <h1>Presto Fresco</h1>
     <div class='top-right'>
       <h4 class="mr-2">Back</h4>
-      <a class="btn-plus" href="#"><i class="fas fa-angle-left"></i></a>
+      <%= link_to session[:history].last do %>
+        <p class="btn-plus"><i class="fas fa-angle-left"></i></p>
+      <% end %>
   </div>
 </div>
 
