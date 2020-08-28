@@ -13,15 +13,32 @@
 <div class="card-scroll">
   <div class='cards-container'>
       <% category.dishes.each do |dish| %>
-    <div class='dishcard'>
+    <div class='dishcard' data-controller="change-qty">
       <% if dish.photo.attached? %>
       <%= cl_image_tag dish.photo.key , :class => "dishimg" %>
       <% end %>
         <div class="textcontainer">
           <h2><%= dish.name %></h2>
-          <div class='priceandbutton'>
-            <h3><%= dish.price %>€</h3>
-            <a class="btn-plus" href="">+</a>
+          <div class='priceandbutton d-flex flex-column'>
+            <h3 style="display: flex; align-items: center"><%= format "%0.2f", dish.price %> €</h3>
+            <div style="display: flex; align-items: center; justify-content: center;">
+              <div class="btn-plus" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
+                <%= simple_fields_for :order_dishes do |od| %>
+                  <%= od.input(
+                        dish.id,
+
+                        readonly: true,
+                        label: false,
+                        wrapper_html: {style: "margin: 0;"},
+                        input_html: {
+                          value: 0,
+                          style: "background-color: white; border-color: white ; color: black; width: 50px; text-align: center",
+                          data: {target: "change-qty.input"}
+                        }
+                      ) %>
+                <% end %>
+              <div class="btn-plus" data-action="click->change-qty#plus" style= "cursor: pointer;">+</div>
+            </div>
           </div>
       </div>
     </div>
@@ -29,4 +46,5 @@
   </div>
 </div>
 <% end %>
+<%= f.submit %>
 <% end %>
