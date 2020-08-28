@@ -1,13 +1,50 @@
+<div class='top-page'>
+  <h1>Presto Fresco</h1>
+    <div class='top-right'>
+      <h4 class="mr-2">Back</h4>
+      <a class="btn-plus" href="#"><i class="fas fa-angle-left"></i></a>
+  </div>
+</div>
 
-<div><h1>Thank you for your order!</h1></div>
-<div><h2>Order n°<%= @order.id %></h2></div>
-<div><h3>Receipt</h3></div>
 
-<% @priced_order.each do |dish| %>
-<ul>
-<p><%= dish[0] %> x <%= dish[1] %> : <%= dish[2] %> €</p>
+<div class='summarycontainer'>
+  <div class='summarycontent'>
+    <div class='ordersummary'>
+      <h2>Summary</h2>
+      <h3>0rder: #<%= @order.id %> </h3>
+    </div>
+    <h4>Table <%= @order.table_id %></h4>
+    <% x = 0 %>
+    <div class='row textsize'>
+      <div class='col-6 orderborder'>
+        <% @dishes.select('name').group('name').sum('price').each do |dish| %>
+          <div>
+            <%= dish[0][0..20].gsub(/\s\w+\s*$/, '...') %>
+          </div>
+        <% end %>
+      </div>
+      <div class='col-3 orderborder text-center'>
+        <% @order.order_dishes.select('dish_id').group('dish_id').count.each do |order| %>
+          <div>
+            <%= order[1] %>
+          </div>
+        <% end %>
+      </div>
+      <div class='col-3 text-center' >
+        <% @dishes.select('id, price').group('name').sum('price').each do |dish| %>
+          <div>
+            <%= dish[1] %>€
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class='summaryprice'>
+      <div><h2>Total:</h2></div>
+      <div><h2><%= @dishes.select('id, name, price').sum('price') %> €</h2></div>
+  </div>
+</div>
 
-</ul>
-<% end %>
-
-<p>Total : <%= @totalprice %> €</p>
+<div class='lastp'>
+<p>Thank you for you order ! We hope to see you soon !</p>
+</div>
