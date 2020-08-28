@@ -1,4 +1,5 @@
 class DishesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show]
   def index
     @dishes = policy_scope(Dish)
   end

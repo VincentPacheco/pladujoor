@@ -1,7 +1,8 @@
+<p>Your dishes</p>
 <div>Table: <%= @order.table_id %> </div>
 <div>Numéro de commande: <%= @order.id %> </div>
 <% x = 0 %>
-<div style="display: flex; margin: 10px"" >
+<div style="display: flex; margin: 10px" >
   <div style="margin-right: 10px" >
     <% @order.order_dishes.select('dish_id').group('dish_id').count.each do |order| %>
       <div>
@@ -21,4 +22,7 @@
     Total: <%= @dishes.select('id, name, price').sum('price') %> €
   </div>
 
-<%= link_to "Pay", root_path %>
+<%= link_to "Continue my order", new_restaurant_table_order_path %>
+
+
+<%= link_to "Pay", restaurant_table_order_path %>

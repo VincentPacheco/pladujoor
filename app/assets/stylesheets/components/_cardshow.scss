@@ -1,0 +1,24 @@
+.showcontainer {
+  img {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+.showtextcontainer {
+  margin-bottom: 25px;
+  h2 {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  p {
+    color: #909090;
+    font-weight: 400;
+  }
+}
+
+.showtitleprice {
+  display: flex;
+  justify-content: space-between;
+}

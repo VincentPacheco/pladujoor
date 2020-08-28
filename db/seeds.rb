@@ -1,6 +1,6 @@
 require "open-uri"
 
-puts "Star destroying the Database..."
+puts "Destroying the Database..."
 Order.destroy_all
 puts "Orders destroyed!"
 Dish.destroy_all
@@ -24,12 +24,12 @@ admin = User.create!(email: "boss1@test.com", password: "123123")
 restaurant = Restaurant.create!(name: "Presto Fresco", user: admin)
 table = Table.create!(number: 7, restaurant: restaurant)
 menu = Menu.create!(restaurant: restaurant, name: "Summer Menu")
-%w[Starters Dishes Desserts].each do |cat_name|
+%w[Starters Dishes Desserts Drinks].each do |cat_name|
   cat = Category.create!(name: cat_name, menu: menu)
   if cat_name == "Starters"
     tomatoe = Dish.create!(name: "Tomatoes & Mozzarella",
        ingredient: "Tomates, Mozzarella ACO 100g, Basilic, Olive oil",
-       price: 8,
+       price: 8.50,
        category: cat,
        restaurant: restaurant)
     tomatoe.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606071/Pladujoor/tomatesmozza_koyhet.jpg'), filename: 'tomatoe.jpg', content_type: 'image/jpg')
@@ -37,14 +37,14 @@ menu = Menu.create!(restaurant: restaurant, name: "Summer Menu")
 
     bruschetta = Dish.create!(name: "Garlic Bruschetta",
       ingredient: "Grilled bread, Tomatoes, Garlic, Basilic, Olive oil",
-      price: 7, 
+      price: 7.50,
       category: cat,
       restaurant: restaurant)
     bruschetta.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606070/Pladujoor/bruschetta_yvpmn2.jpg'), filename: 'bruschetta.jpg', content_type: 'image/jpg')
 
     burrata = Dish.create!(name: "Burrata & cherry tomatoes",
       ingredient: "Burrata ACO 100g, Cherry tomatoes, Olive oil",
-      price: 9,
+      price: 9.50,
       category: cat,
       restaurant: restaurant)
     burrata.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606069/Pladujoor/burrata-et-tomates-cerises_dup6ye.jpg'), filename: 'burrata.jpg', content_type: 'image/jpg')
@@ -53,7 +53,7 @@ menu = Menu.create!(restaurant: restaurant, name: "Summer Menu")
   elsif cat_name == "Dishes"
     arrabiata = Dish.create!(name: "Penne with Arrabiata sauce",
       ingredient: "Penne, Spicy Arrabiata sauce, Parmesan",
-      price: 12,
+      price: 12.50,
       category: cat,
       restaurant: restaurant)
     arrabiata.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606071/Pladujoor/pennearrabiata_yoe1xb.jpg'), filename: 'arrabiata.jpg', content_type: 'image/jpg')
@@ -79,18 +79,18 @@ menu = Menu.create!(restaurant: restaurant, name: "Summer Menu")
       price: 12,
       category: cat,
       restaurant: restaurant)
-    tiramisu.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606071/Pladujoor/tomatesmozza_koyhet.jpg'), filename: 'tiramisu.jpg', content_type: 'image/jpg')
+    tiramisu.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606070/Pladujoor/tiramisucafe_ijv0oe.jpg'), filename: 'tiramisu.jpg', content_type: 'image/jpg')
 
     pannacotta = Dish.create!(name: "Panna Cotta",
       ingredient: "Milk, Gelatin, Cream, Sugar, Vanilla beans, Strawberries",
       price: 10,
       category: cat,
       restaurant: restaurant)
-    pannacotta.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606070/Pladujoor/tiramisucafe_ijv0oe.jpg'), filename: 'pannacotta.jpg', content_type: 'image/jpg')
+    pannacotta.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606070/Pladujoor/pannacotta_swujc4.jpg'), filename: 'pannacotta.jpg', content_type: 'image/jpg')
 
     cannoli = Dish.create!(name: "Cannoli",
       ingredient: "Flour, Eggs, Sugar, Oil, Vanilla essence, Sour cream, Chocolate, Ricotta cheese",
-      price: 12,
+      price: 12.50,
       category: cat,
       restaurant: restaurant)
     cannoli.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606069/Pladujoor/cannoli_brbkbf.jpg'), filename: 'cannoli.jpg', content_type: 'image/jpg')
@@ -113,7 +113,7 @@ menu = Menu.create!(restaurant: restaurant, name: "Summer Menu")
 
     water = Dish.create!(name: "Mineral water",
       ingredient: nil,
-      price: 12,
+      price: 12.50,
       category: cat,
       restaurant: restaurant)
     water.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606072/Pladujoor/water_ompxow.jpg'), filename: 'water.jpg', content_type: 'image/jpg')

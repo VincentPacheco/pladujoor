@@ -1,14 +1,13 @@
-<h1>Thank you for your order!</h1>
-<h2>Order n°<%= @order.id %></h2>
-<h3>Receipt</h3>
+
+<div><h1>Thank you for your order!</h1></div>
+<div><h2>Order n°<%= @order.id %></h2></div>
+<div><h3>Receipt</h3></div>
 
 <% @priced_order.each do |dish| %>
 <ul>
-<%= dish[0] %> <%= dish[1] %> <%= dish[2] %>
+<p><%= dish[0] %> x <%= dish[1] %> : <%= dish[2] %> €</p>
+
 </ul>
 <% end %>
 
-<%= @totalprice %>
-
-
-
+<p>Total : <%= @totalprice %> €</p>

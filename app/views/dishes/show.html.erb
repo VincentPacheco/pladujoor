@@ -1,4 +1,32 @@
-<h1>Dishes#show</h1>
-<p>Find me in app/views/dishes/show.html.erb</p>
-<%= cl_image_tag @dish.photo.key, height: 300, width: 400, crop: :fill %>
-<%= @dish.name %>
+<div class='top-page'>
+  <h1>Presto Fresco</h1>
+    <div class='top-right'>
+      <h4 class="mr-2">Back</h4>
+      <a class="btn-plus" href="#"><i class="fas fa-angle-left"></i></a>
+  </div>
+</div>
+
+<div class='showcontainer'>
+<% if @dish.photo.attached? %>
+      <%= cl_image_tag @dish.photo.key , :class => "showimg" %>
+      <% end %>
+</div>
+
+<div class='showtextcontainer'>
+  <div class='showtitleprice'>
+    <h2><%= @dish.name %></h2>
+    <h2><%= @dish.price %>€</h2>
+  </div>
+  <p><%= @dish.ingredient %></p>
+</div>
+
+<div class='btnbottom'>
+  <div class='btnqty'>
+    <p class="btn-plus2" href="">-</p>
+    <p>1</p>
+    <p class="btn-plus2" href="">+</p>
+  </div>
+  <div class='btnadd'>
+    <%= link_to "ADD", root_path%>
+  </div>
+</div>
