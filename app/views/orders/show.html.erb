@@ -15,33 +15,27 @@
     </div>
     <h4>Table <%= @order.table_id %></h4>
     <% x = 0 %>
-    <div class='row textsize'>
-      <div class='col-6 orderborder'>
-        <% @dishes.select('name').group('name').sum('price').each do |dish| %>
-          <div>
-            <%= dish[0][0..20].gsub(/\s\w+\s*$/, '...') %>
-          </div>
-        <% end %>
-      </div>
-      <div class='col-3 orderborder text-center'>
-        <% @order.order_dishes.select('dish_id').group('dish_id').count.each do |order| %>
-          <div>
-            <%= order[1] %>
-          </div>
-        <% end %>
-      </div>
-      <div class='col-3 text-center' >
-        <% @dishes.select('id, price').group('name').sum('price').each do |dish| %>
-          <div>
-            <%= dish[1] %>€
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <table>
+    <thead><tr>
+    <th>ARTICLE</th>
+    <th>QTY</th>
+    <th>PRICE</th></tr>
+    </thead>
+    <tbody>
+    <% @priced_order.each do |order| %>
+    <tr>
+      <td><%= truncate(order[1], length: 15)%></td>
+      <td><%= order[0] %></td>
+      <td><%= format "%0.2f", order[2] %></td>
+    </tr>
+    <% end %>
+    </tbody>
+    </table>
+
   </div>
   <div class='summaryprice'>
       <div><h2>Total:</h2></div>
-      <div><h2><%= @dishes.select('id, name, price').sum('price') %> €</h2></div>
+      <div><h2><%= format "%0.2f", @totalprice %> €</h2></div>
   </div>
 </div>
 
