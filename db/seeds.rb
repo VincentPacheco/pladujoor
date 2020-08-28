@@ -37,7 +37,7 @@ menu = Menu.create!(restaurant: restaurant, name: "Summer Menu")
 
     bruschetta = Dish.create!(name: "Garlic Bruschetta",
       ingredient: "Grilled bread, Tomatoes, Garlic, Basilic, Olive oil",
-      price: 7, 
+      price: 7,
       category: cat,
       restaurant: restaurant)
     bruschetta.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606070/Pladujoor/bruschetta_yvpmn2.jpg'), filename: 'bruschetta.jpg', content_type: 'image/jpg')
@@ -79,14 +79,14 @@ menu = Menu.create!(restaurant: restaurant, name: "Summer Menu")
       price: 12,
       category: cat,
       restaurant: restaurant)
-    tiramisu.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606071/Pladujoor/tomatesmozza_koyhet.jpg'), filename: 'tiramisu.jpg', content_type: 'image/jpg')
+    tiramisu.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606070/Pladujoor/tiramisucafe_ijv0oe.jpg'), filename: 'tiramisu.jpg', content_type: 'image/jpg')
 
     pannacotta = Dish.create!(name: "Panna Cotta",
       ingredient: "Milk, Gelatin, Cream, Sugar, Vanilla beans, Strawberries",
       price: 10,
       category: cat,
       restaurant: restaurant)
-    pannacotta.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606070/Pladujoor/tiramisucafe_ijv0oe.jpg'), filename: 'pannacotta.jpg', content_type: 'image/jpg')
+    pannacotta.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606070/Pladujoor/pannacotta_swujc4.jpg'), filename: 'pannacotta.jpg', content_type: 'image/jpg')
 
     cannoli = Dish.create!(name: "Cannoli",
       ingredient: "Flour, Eggs, Sugar, Oil, Vanilla essence, Sour cream, Chocolate, Ricotta cheese",
