@@ -22,6 +22,9 @@
           <div class='priceandbutton'>
             <h3><%= dish.price %>€</h3>
             <a class="btn-plus" href="">+</a>
+              <%= simple_fields_for :order_dishes do |od| %>
+              <%= od.input dish.id, label: dish.name %>
+            <% end %>
           </div>
       </div>
     </div>
@@ -29,4 +32,5 @@
   </div>
 </div>
 <% end %>
+<%= f.submit %>
 <% end %>
