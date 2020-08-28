@@ -1,12 +1,23 @@
 <div>Table: <%= @order.table_id %> </div>
 <div>Numéro de commande: <%= @order.id %> </div>
-
-<div>
-  <% @dishes.select('id, name, price').group('name').sum('price').each do |dish| %>
-    <div>
-      <% i = 0 while dish != nil do i + 1  end%>
-        <%= i %> <%= dish[0]  %> <%= dish[1]  %>
-      <% end %>
-    </div>
-  <% end %>
+<% x = 0 %>
+<div style="display: flex; margin: 10px"">
+  <div style="margin-right: 10px">
+    <% @order.order_dishes.select('dish_id').group('dish_id').each do |order| %>
+      <% order.dish_id %>
+      <% x = x + 1 %>
+      <div>
+        <%= x %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <% @dishes.select('id, name, price').group('name').sum('price').each do |dish| %>
+      <div>
+        <%= dish[0]  %> <%= dish[1]  %>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+<button>Pay</button>
