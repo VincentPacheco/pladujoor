@@ -1,14 +1,14 @@
 class OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create, :show, :confirmation ]
+  skip_before_action :authenticate_user!, only: [:new, :create, :show, :confirmation, :edit, :update ]
   before_action :find_order, only: [ :name ]
   def index
     @orders = policy_scope(Order)
   end
 
   def new
-    @restaurant = Restaurant.find(params[:restaurant_id])
-    @menu = @restaurant.menus.first
     @table = Table.find(params[:table_id])
+    @restaurant = @table.restaurant
+    @menu = @restaurant.menus.first
     @order = Order.new
     authorize @order
   end
@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
     end
     authorize @order
     if @order.save!
-      redirect_to confirmation_restaurant_table_order_path(@order.table.restaurant, @order.table, @order)
+      redirect_to confirmation_table_order_path(@order.table, @order)
     else
       render 'new'
     end
@@ -38,14 +38,22 @@ class OrdersController < ApplicationController
 
   def edit
     @order = Order.find(params[:id])
+    @table = @order.table
+    @restaurant = @table.restaurant
+    @menu = @restaurant.menus.first
     authorize @order
   end
 
   def update
     @order = Order.find(params[:id])
     authorize @order
-    @order.update(order_params)
-    redirect_to order_path(@order)
+    @order.order_dishes.destroy_all
+    params[:order_dishes].each do |id, qty|
+      qty.to_i.times do
+        OrderDish.create(dish_id: id, order: @order)
+      end
+    end
+    redirect_to confirmation_table_order_path(@order.table, @order)
   end
 
   def confirmation
@@ -55,7 +63,7 @@ class OrdersController < ApplicationController
     @dishes = @order.dishes
     authorize @order
   end
-  
+
   def show
     @order = Order.find(params[:id])
 

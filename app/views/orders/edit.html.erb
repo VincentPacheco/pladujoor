@@ -33,7 +33,7 @@
                         label: false,
                         wrapper_html: {style: "margin: 0;"},
                         input_html: {
-                          value: 0,
+                          value: @order.dishes.count { |e| e == dish },
                           style: "background-color: white; border-color: white ; color: black; width: 50px; text-align: center",
                           data: {target: "change-qty.input"}
                         }

@@ -2,7 +2,10 @@
   <h1>Presto Fresco</h1>
     <div class='top-right'>
       <h4 class="mr-2">Back</h4>
-      <a class="btn-plus" href="#"><i class="fas fa-angle-left"></i></a>
+      <%= link_to edit_table_order_path(@order.table, @order), class: "btn-plus" do %>
+        <i class="fas fa-angle-left"></i>
+      <% end %>
+      </a>
   </div>
 </div>
 
@@ -50,9 +53,9 @@
 
 <div class='btnorder'>
   <div class='btncontinue'>
-    <%= link_to "CONTINUE", new_restaurant_table_order_path%>
+    <%= link_to "CONTINUE", new_table_order_path%>
   </div>
   <div class='btnpay'>
-      <%= link_to "PAY", restaurant_table_order_path%>
+      <%= link_to "PAY", table_order_path%>
   </div>
 </div>
