@@ -30,6 +30,8 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'cloudinary', '~> 1.12.0'
 gem 'geocoder'
 gem 'rqrcode'
+gem 'stripe'
+gem 'money-rails'
 
 
 # Reduces boot times through caching; required in config/boot.rb
