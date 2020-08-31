@@ -21,7 +21,7 @@
     <div class='row textsize'>
       <div class='col-6 orderborder'>
         <h5>ARTICLES</h5>
-        <% @dishes.select('name').group('name').sum('price').each do |dish| %>
+        <% @dishes.select('name').group('name').sum('price_cents').each do |dish| %>
           <div>
             <%= truncate(dish[0], length: 17)%>
           </div>
@@ -36,10 +36,10 @@
         <% end %>
       </div>
       <div class='col-3 text-center' >
-        <h5>PRICE</h5>
-        <% @dishes.select('id, price').group('name').sum('price').each do |dish| %>
+        <h5>Price</h5>
+        <% @dishes.select('id, price_cents').group('name').sum('price_cents').each do |dish| %>
           <div>
-            <%= dish[1] %>€
+            <%= humanized_money(Money.new(dish[1])) %>€
           </div>
         <% end %>
       </div>
@@ -47,7 +47,7 @@
   </div>
   <div class='summaryprice'>
       <div><h2>Total:</h2></div>
-      <div><h2><%= @dishes.select('id, name, price').sum('price') %> €</h2></div>
+      <div><h2><%= humanized_money(Money.new(@dishes.select('id, name, price_cents').sum('price_cents'))) %> €</h2></div>
   </div>
 </div>
 
