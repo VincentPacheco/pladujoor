@@ -47,8 +47,13 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     authorize @order
-    @order.update(order_params)
-    redirect_to order_path(@order)
+    @order.order_dishes.destroy_all
+    params[:order_dishes].each do |id, qty|
+      qty.to_i.times do
+        OrderDish.create(dish_id: id, order: @order)
+      end
+    end
+    redirect_to confirmation_table_order_path(@order.table, @order)
   end
 
   def confirmation
