@@ -23,6 +23,20 @@ class OrdersController < ApplicationController
     end
     authorize @order
     if @order.save!
+      @totalprice = @order.order_dishes.reduce(0) { |sum, order_dish| sum + order_dish.dish.price }
+      session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        line_items: [{
+          name: "Pladujoor",
+          images: ["https://restaurantdupalaisroyal.com/wp-content/uploads/2020/02/Restaurant_du_Palais_Royal_RDC_11_GdeLaubier.jpg"],
+          amount: @totalprice.fractional,
+          currency: 'eur',
+          quantity: 1
+        }],
+        success_url: table_order_url(@order.table, @order),
+        cancel_url: table_order_url(@order.table, @order)
+      )
+      @order.update(checkout_session_id: session.id)
       redirect_to confirmation_table_order_path(@order.table, @order)
     else
       render 'new'
@@ -53,15 +67,30 @@ class OrdersController < ApplicationController
         OrderDish.create(dish_id: id, order: @order)
       end
     end
+    @totalprice = @order.reload.order_dishes.reduce(0) { |sum, order_dish| sum + order_dish.dish.price }
+    session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      line_items: [{
+        name: "Pladujoor",
+        images: ["https://restaurantdupalaisroyal.com/wp-content/uploads/2020/02/Restaurant_du_Palais_Royal_RDC_11_GdeLaubier.jpg"],
+        amount: @totalprice.fractional,
+        currency: 'eur',
+        quantity: 1
+      }],
+      success_url: table_order_url(@order.table, @order),
+      cancel_url: table_order_url(@order.table, @order)
+    )
+    @order.update(checkout_session_id: session.id)
     redirect_to confirmation_table_order_path(@order.table, @order)
   end
 
   def confirmation
     @order = Order.find(params[:id])
-    @orderdishes = @order.order_dishes
-    # @dishes = Dish.find(@orderdishes).group(:dish_id).order('dish_id asc')
-    @dishes = @order.dishes
     authorize @order
+    @orderdishes = @order.order_dishes
+    @dishes = @order.dishes
+    @menu_test = Money.new(@dishes.select('id, name, price_cents').sum('price_cents'))
+    
   end
 
   def show

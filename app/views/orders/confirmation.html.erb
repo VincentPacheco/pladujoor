@@ -47,7 +47,7 @@
   </div>
   <div class='summaryprice'>
       <div><h2>Total:</h2></div>
-      <div><h2><%= humanized_money(Money.new(@dishes.select('id, name, price_cents').sum('price_cents'))) %> €</h2></div>
+      <div><h2><%= humanized_money(@menu_test) %> €</h2></div>
   </div>
 </div>
 
@@ -56,6 +56,17 @@
     <%= link_to "CONTINUE", new_table_order_path%>
   </div>
   <div class='btnpay'>
-      <%= link_to "PAY", table_order_path%>
+      <button id="pay" class="btn btn-primary">Pay</button>
+
+      <script src="https://js.stripe.com/v3/"></script>
+      <script>
+        const paymentButton = document.getElementById('pay');
+        paymentButton.addEventListener('click', () => {
+          const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+          stripe.redirectToCheckout({
+            sessionId: '<%= @order.checkout_session_id %>'
+          });
+        });
+      </script>
   </div>
 </div>
