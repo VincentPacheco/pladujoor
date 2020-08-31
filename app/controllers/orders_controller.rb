@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create, :show, :confirmation ]
+  skip_before_action :authenticate_user!, only: [:new, :create, :show, :confirmation, :edit, :update ]
   before_action :find_order, only: [ :name ]
   def index
     @orders = policy_scope(Order)
@@ -38,6 +38,9 @@ class OrdersController < ApplicationController
 
   def edit
     @order = Order.find(params[:id])
+    @table = @order.table
+    @restaurant = @table.restaurant
+    @menu = @restaurant.menus.first
     authorize @order
   end
 

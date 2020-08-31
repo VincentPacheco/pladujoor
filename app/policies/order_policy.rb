@@ -20,4 +20,12 @@ class OrderPolicy < ApplicationPolicy
   def confirmation?
     return true
   end
+
+  def edit?
+    return true
+  end
+
+  def update?
+    return true
+  end
 end
