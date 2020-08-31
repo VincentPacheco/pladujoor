@@ -1,7 +1,13 @@
 <div class="footer">
-  <i class="fas fa-home"></i>
+  <div class=" <%=  menu_index? ? 'footerblue' : 'footergrey' %>">
+    <%= link_to root_path do %>
+      <i class="fas fa-book-open"></i>
+    <% end %>
+  </div>
   <h3>|</h3>
-  <i class="fas fa-book-open"></i>
-  <h3>|</h3>
-  <i class="fas fa-shopping-cart"></i>
+  <div class=" <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
+    <%= link_to root_path do %>
+      <i class="fas fa-shopping-cart"></i>
+    <% end %>
+  </div>
 </div>

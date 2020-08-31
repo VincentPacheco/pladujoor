@@ -84,3 +84,17 @@
   font-size: 16px;
   }
 }
+
+.btnscancontinue {
+  width: 120px;
+  background-color: #0087D3;
+  box-shadow: $box-shadow;
+  border-radius: 7px;
+  padding: 10px;
+  text-align: center;
+  a {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  }
+}

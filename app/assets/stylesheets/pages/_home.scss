@@ -1,1 +1,89 @@
 // Specific CSS for your home-page
+.bluecircle {
+  height: 75vh;
+  width: 100%;
+  background-color: #0087D3;
+  border-radius: 0 0 390px 0;
+  position: relative;
+  h1 {
+    color: white;
+    font-size: 45px;
+    font-weight: medium;
+    padding: 20px;
+    text-align: center;
+  }
+  p {
+    color: white;
+    font-size: 18px;
+    font-weight: medium;
+    padding: 30px;
+  }
+}
+
+#pages-home .container {
+    padding: 0;
+}
+
+.photoblue {
+  background: url('https://res.cloudinary.com/ds0cha29d/image/upload/v1598883520/Pladujoor/iphonepladujoor_syummt.png');
+  background-size: cover;
+  width: 240px;
+  height: 240px;
+  margin: auto;
+  display: block;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  img {
+    width: 85px;
+    position: absolute;
+    right: -25px;
+    top: 10px;
+  }
+}
+
+.stapes {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  h2 {
+  font-size: 16px;
+  }
+  p {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  color: white;
+  background-color: #0087D3;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 5px;
+  }
+}
+
+.onleft {
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+}
+.onright {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+span {
+  content: "\293A";
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.span2 {
+  content: "\293A";
+  font-size: 20px;
+  transform: scaleX(-1);
+}

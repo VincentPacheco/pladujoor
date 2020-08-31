@@ -1,5 +1,5 @@
 .footer {
-  color: #0087D3;
+
   display: flex;
   justify-content: space-evenly;
   position: fixed;
@@ -24,3 +24,10 @@
 // .fixfooter {
 //   min-height: calc(100vh - #{$navbarheight} - #{$footerheight})
 // }
+
+.footerblue a {
+  color: #0087D3 ;
+}
+.footergrey a {
+  color: #ACB5BD;
+}
