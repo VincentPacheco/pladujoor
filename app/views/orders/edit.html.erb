@@ -4,7 +4,7 @@
   <h1><%= @restaurant.name%></h1>
 </div>
 
-<%= simple_form_for [@table, @order] do |f| %>
+<%= simple_form_for [@restaurant, @table, @order] do |f| %>
   <% @menu.categories.each do |category| %>
 <div class='category-title'>
   <h2><%= category.name %></h2>

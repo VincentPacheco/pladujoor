@@ -6,14 +6,15 @@ Rails.application.routes.draw do
     resources :menus do
       resources :categories
     end
-    resources :tables do
-      resources :orders, only: [:index, :new, :create, :show] do
-        member do
-          get :confirmation
-        end
+    resources :dishes
+  end
+
+  resources :tables do
+    resources :orders, only: [:index, :new, :create, :show] do
+      member do
+        get :confirmation
       end
     end
-    resources :dishes
   end
 
   resources :tables

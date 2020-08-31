@@ -6,9 +6,9 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @restaurant = Restaurant.find(params[:restaurant_id])
-    @menu = @restaurant.menus.first
     @table = Table.find(params[:table_id])
+    @restaurant = @table.restaurant
+    @menu = @restaurant.menus.first
     @order = Order.new
     authorize @order
   end
@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
     end
     authorize @order
     if @order.save!
-      redirect_to confirmation_restaurant_table_order_path(@order.table.restaurant, @order.table, @order)
+      redirect_to confirmation_table_order_path(@order.table, @order)
     else
       render 'new'
     end
@@ -55,7 +55,7 @@ class OrdersController < ApplicationController
     @dishes = @order.dishes
     authorize @order
   end
-  
+
   def show
     @order = Order.find(params[:id])
 
