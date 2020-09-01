@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
       session[:history] << request.fullpath
       session[:history].delete_at 0 if session[:history].size == 6
   end
+  
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
 
   private
 
