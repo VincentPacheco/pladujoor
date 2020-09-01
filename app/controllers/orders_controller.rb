@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
         payment_method_types: ['card'],
         line_items: [{
           name: "Pladujoor",
-          images: ["https://restaurantdupalaisroyal.com/wp-content/uploads/2020/02/Restaurant_du_Palais_Royal_RDC_11_GdeLaubier.jpg"],
+          images: ["https://res.cloudinary.com/ds0cha29d/image/upload/v1598952424/Pladujoor/logopdj2_ofyxv8.png"],
           amount: @totalprice.fractional,
           currency: 'eur',
           quantity: 1
@@ -77,7 +77,7 @@ class OrdersController < ApplicationController
       payment_method_types: ['card'],
       line_items: [{
         name: "Pladujoor",
-        images: ["https://restaurantdupalaisroyal.com/wp-content/uploads/2020/02/Restaurant_du_Palais_Royal_RDC_11_GdeLaubier.jpg"],
+        images: ["https://res.cloudinary.com/ds0cha29d/image/upload/v1598952424/Pladujoor/logopdj2_ofyxv8.png"],
         amount: @totalprice.fractional,
         currency: 'eur',
         quantity: 1
