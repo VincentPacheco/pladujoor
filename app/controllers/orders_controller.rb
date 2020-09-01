@@ -73,7 +73,12 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @table = @order.table
     @restaurant = @table.restaurant
-    @menu = @restaurant.menus.first
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR ingredient ILIKE :query"
+      @dishes = @restaurant.dishes.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @menu = @restaurant.menus.first
+    end
     authorize @order
   end
 
