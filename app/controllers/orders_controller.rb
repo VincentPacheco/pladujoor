@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
         payment_method_types: ['card'],
         line_items: [{
           name: "Pladujoor",
-          images: ["https://res.cloudinary.com/ds0cha29d/image/upload/v1598964394/Pladujoor/newlogo_xcozko.png"],
+          images: ["https://res.cloudinary.com/ds0cha29d/image/upload/v1598952947/Pladujoor/1200x_tlhokc.png"],
           amount: @totalprice.fractional,
           currency: 'eur',
           quantity: 1
@@ -77,7 +77,7 @@ class OrdersController < ApplicationController
       payment_method_types: ['card'],
       line_items: [{
         name: "Pladujoor",
-        images: ["https://res.cloudinary.com/ds0cha29d/image/upload/v1598964394/Pladujoor/newlogo_xcozko.png"],
+        images: ["https://res.cloudinary.com/ds0cha29d/image/upload/v1598952947/Pladujoor/1200x_tlhokc.png"],
         amount: @totalprice.fractional,
         currency: 'eur',
         quantity: 1
