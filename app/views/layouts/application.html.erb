@@ -59,10 +59,10 @@
       <%= render 'shared/navbar' %>
     <% end %>
     <%= render 'shared/flashes' %>
-    <div class="container">
+    <div class=<%= 'container' unless ['orders'].include?(controller_name) && ['edit'].include?(action_name) %>>
       <%= yield %>
     </div>
-    <% unless controller_name == "pages" && action_name == "home" %>
+    <% unless ['pages', 'orders'].include?(controller_name) && ['home', 'edit'].include?(action_name) %>
       <%= render 'shared/footer' %>
     <% end %>
   </body>
