@@ -52,11 +52,7 @@
 </div>
 
 <div class='btnorder'>
-  <div class='btncontinue'>
-    <%= link_to "CONTINUE", new_table_order_path%>
-  </div>
-  <div class='btnpay'>
-      <button id="pay" class="btn btn-primary">Pay</button>
+      <button id="pay" class="btn btn-primary" style='background-color: #0087D3; font-family: ;font-weight: 500; width: 110px; height: 35px; border-radius: 7px;'>PAY</button>
 
       <script src="https://js.stripe.com/v3/"></script>
       <script>
@@ -68,5 +64,4 @@
           });
         });
       </script>
-  </div>
 </div>
