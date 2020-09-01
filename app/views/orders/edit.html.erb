@@ -112,7 +112,8 @@
                               input_html: {
                                 value: @order.dishes.count { |e| e == dish },
                                 style: "display: none",
-                                data: {target: "change-qty.input"}
+                                data: {target: "change-qty.input"},
+                                class: 'qty'
                               }
                             ) %>
                       <% end %>
@@ -134,12 +135,16 @@
       <% end %>
     </div>
     <h3>|</h3>
-    <div class=" <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
-      <%= button_tag type: 'submit', class: "button postfix", style:"border: none; background-color: white; color: #acb5bd; "  do %>
+    <div class=" cartcount <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
+      <div class='cart'>
+      <%= button_tag type: 'submit', class: "button postfix" do %>
         <i class="fas fa-shopping-cart"></i>
+      </div>
+      <div class='count'>
+        <span id="sum"></span>
+      </div>
       <% end %>
     </div>
   </div>
-
 <% end %>
 <% end %>

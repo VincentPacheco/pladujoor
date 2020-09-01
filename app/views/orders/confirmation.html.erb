@@ -2,7 +2,7 @@
   <h1>Presto Fresco</h1>
     <div class='top-right'>
       <h4 class="mr-2">Back</h4>
-      <%= link_to edit_table_order_path(@order.table, @order), class: "btn-plus" do %>
+      <%= link_to edit_table_order_path(@order.table, @order), class: "btn-plus", data: { turbolinks: 'false' } do %>
         <i class="fas fa-angle-left"></i>
       <% end %>
       </a>
