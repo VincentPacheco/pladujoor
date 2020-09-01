@@ -39,10 +39,15 @@
   margin-top: 20px;
   width: 100%;
   padding: 10px;
+  border: none;
   border-radius: 7px;
   box-shadow: $box-shadow;
   background-color: #0087D3;
   text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  
   a {
   color: white;
   font-weight: bold;

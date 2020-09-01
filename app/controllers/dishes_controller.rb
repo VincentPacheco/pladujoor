@@ -5,8 +5,12 @@ class DishesController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(params[:restaurant_id])
+    @order = Order.find(params[:order_id])
+    @table = @order.table
     @dish = Dish.find(params[:id])
+    
+    @dishe_ids_with_quantity = @order.order_dishes.group(:dish_id).count
+
     authorize @dish
   end
 
