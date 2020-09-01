@@ -7,4 +7,8 @@ module ApplicationHelper
   def menu_index?
     controller_name == 'dishes' && action_name == 'show' || controller_name == 'orders' && action_name == 'new'
   end
+
+  def menu_edit?
+    controller_name == 'dishes' && action_name == 'show' || controller_name == 'orders' && action_name == 'edit'
+  end
 end

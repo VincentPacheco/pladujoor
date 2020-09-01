@@ -62,7 +62,7 @@
     <div class="container">
       <%= yield %>
     </div>
-    <% unless controller_name == "pages" && action_name == "home" %>
+    <% unless ['pages', 'orders'].include?(controller_name) && ['home', 'edit'].include?(action_name) %>
       <%= render 'shared/footer' %>
     <% end %>
   </body>

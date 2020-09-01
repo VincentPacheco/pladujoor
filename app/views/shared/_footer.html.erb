@@ -1,13 +1,30 @@
-<div class="footer">
-  <div class=" <%=  menu_index? ? 'footerblue' : 'footergrey' %>">
-    <%= link_to root_path do %>
-      <i class="fas fa-book-open"></i>
-    <% end %>
+<% if  @order.id == nil %>
+  <div class="footer">
+    <div class=" <%=  menu_index? ? 'footerblue' : 'footergrey' %>">
+      <%= link_to new_table_order_path(@table) do %>
+        <i class="fas fa-book-open"></i>
+      <% end %>
+    </div>
+    <h3>|</h3>
+    <div class=" <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
+      <%= link_to new_table_order_path(@table) do %>
+        <i class="fas fa-shopping-cart"></i>
+      <% end %>
+    </div>
   </div>
-  <h3>|</h3>
-  <div class=" <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
-    <%= link_to root_path do %>
-      <i class="fas fa-shopping-cart"></i>
-    <% end %>
+<% else %>
+  <div class="footer">
+    <div class=" <%=  menu_edit? ? 'footerblue' : 'footergrey' %>">
+      <%= link_to edit_table_order_path(@order.table, @order) do %>
+        <i class="fas fa-book-open"></i>
+      <% end %>
+    </div>
+    <h3>|</h3>
+    <div class=" <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
+      <%= link_to confirmation_table_order_path(@order.table, @order) do %>
+        <i class="fas fa-shopping-cart"></i>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
+
