@@ -92,6 +92,10 @@ class OrdersController < ApplicationController
       end
     end
     @totalprice = @order.reload.order_dishes.reduce(0) { |sum, order_dish| sum + order_dish.dish.price }
+
+    if @totalprice == 0
+      flash[:alert] = "Your cart is empty!"
+    else
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
@@ -106,6 +110,9 @@ class OrdersController < ApplicationController
     )
     @order.update(checkout_session_id: session.id)
     redirect_to confirmation_table_order_path(@order.table, @order)
+    end
+
+
   end
 
   def confirmation
