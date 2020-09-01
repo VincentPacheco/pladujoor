@@ -1,52 +1,115 @@
-<input type="search" class='searchbar' placeholder="Search">
 
-<div class='top-page'>
-  <h1><%= @restaurant.name%></h1>
-</div>
+  <%= form_tag new_table_order_path, class: 'searchbar', method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: 'searchbar',
+      placeholder: "Search"
+    %>
+  <% end %>
+  <!-- the list of dishes -->
 
-<%= simple_form_for [@table, @order] do |f| %>
-  <% @menu.categories.each do |category| %>
-<div class='category-title'>
-  <h2><%= category.name %></h2>
-</div>
+<% if @menu.present? %>
 
-<div class="card-scroll">
-  <div class='cards-container'>
-      <% category.dishes.each do |dish| %>
-    <div class='dishcard' data-controller="change-qty">
-      <% if dish.photo.attached? %>
-        <%= link_to restaurant_dish_path(@restaurant, dish) do %>
-          <%= cl_image_tag dish.photo.key , :class => "dishimg" %>
-        <% end %>
-      <% end %>
-        <div class="textcontainer">
-          <h2><%= dish.name %></h2>
-          <div class='priceandbutton d-flex flex-column'>
-            <h3 style="display: flex; align-items: center"><%= format "%0.2f", dish.price %> €</h3>
-            <div style="display: flex; align-items: center; justify-content: center;">
-              <div class="btn-plus" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
-                <%= simple_fields_for :order_dishes do |od| %>
-                  <%= od.input(
-                        dish.id,
-
-                        readonly: true,
-                        label: false,
-                        wrapper_html: {style: "margin: 0;"},
-                        input_html: {
-                          value: 0,
-                          style: "background-color: white; border-color: white ; color: black; width: 50px; text-align: center",
-                          data: {target: "change-qty.input"}
-                        }
-                      ) %>
-                <% end %>
-              <div class="btn-plus" data-action="click->change-qty#plus" style= "cursor: pointer;">+</div>
-            </div>
-          </div>
-      </div>
-    </div>
-        <% end %>
+  <div class='top-page'>
+    <h1><%= @restaurant.name%></h1>
   </div>
-</div>
-<% end %>
-<%= f.submit( style: "border-color: white; background-color: #0087d3; color: white; width: 100%; margin-bottom: 50px") %>
+
+  <%= simple_form_for [@table, @order] do |f| %>
+    <% @menu.categories.each do |category| %>
+  <div class='category-title'>
+    <h2><%= category.name %></h2>
+  </div>
+
+  <div class="card-scroll">
+    <div class='cards-container'>
+        <% category.dishes.each do |dish| %>
+      <div class='dishcard' data-controller="change-qty">
+        <% if dish.photo.attached? %>
+          <%= link_to restaurant_dish_path(@restaurant, dish) do %>
+            <%= cl_image_tag dish.photo.key , :class => "dishimg" %>
+          <% end %>
+        <% else %>
+            <img src="/assets/images/logopladujoor" />
+        <% end %>
+          <div class="textcontainer">
+            <h2><%= dish.name %></h2>
+            <div class='priceandbutton d-flex flex-column'>
+              <h3 style="display: flex; align-items: center"><%= format "%0.2f", dish.price_cents %> €</h3>
+              <div style="display: flex; align-items: center; justify-content: center;">
+                <div class="btn-plus" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
+                  <%= simple_fields_for :order_dishes do |od| %>
+                    <%= od.input(
+                          dish.id,
+
+                          readonly: true,
+                          label: false,
+                          wrapper_html: {style: "margin: 0;"},
+                          input_html: {
+                            value: 0,
+                            style: "background-color: white; border-color: white ; color: black; width: 50px; text-align: center",
+                            data: {target: "change-qty.input"}
+                          }
+                        ) %>
+                  <% end %>
+                <div class="btn-plus" data-action="click->change-qty#plus" style= "cursor: pointer;">+</div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <%= f.submit( style: "border-color: white; background-color: #0087d3; color: white; width: 100%; margin-bottom: 50px") %>
+  <% end %>
+
+<% else %>
+
+  <div class='top-page'>
+    <h1><%= @restaurant.name%></h1>
+  </div>
+
+  <%= simple_form_for [@table, @order] do |f| %>
+
+  <div class="card-scroll">
+    <div class='cards-container'>
+        <% @dishes.each do |dish| %>
+      <div class='dishcard' data-controller="change-qty">
+        <% if dish.photo.attached? %>
+          <%= link_to restaurant_dish_path(@restaurant, dish) do %>
+            <%= cl_image_tag dish.photo.key , :class => "dishimg" %>
+          <% end %>
+        <% else %>
+            <img src="/assets/images/logopladujoor" />
+        <% end %>
+          <div class="textcontainer">
+            <h2><%= dish.name %></h2>
+            <div class='priceandbutton d-flex flex-column'>
+              <h3 style="display: flex; align-items: center"><%= format "%0.2f", dish.price_cents %> €</h3>
+              <div style="display: flex; align-items: center; justify-content: center;">
+                <div class="btn-plus" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
+                  <%= simple_fields_for :order_dishes do |od| %>
+                    <%= od.input(
+                          dish.id,
+
+                          readonly: true,
+                          label: false,
+                          wrapper_html: {style: "margin: 0;"},
+                          input_html: {
+                            value: 0,
+                            style: "background-color: white; border-color: white ; color: black; width: 50px; text-align: center",
+                            data: {target: "change-qty.input"}
+                          }
+                        ) %>
+                  <% end %>
+                <div class="btn-plus" data-action="click->change-qty#plus" style= "cursor: pointer;">+</div>
+              </div>
+            </div>
+        </div>
+      </div>
+          <% end %>
+    </div>
+  </div>
+  <%= f.submit( style: "border-color: white; background-color: #0087d3; color: white; width: 100%; margin-bottom: 50px") %>
+  <% end %>
 <% end %>

@@ -32,6 +32,7 @@ gem 'geocoder'
 gem 'rqrcode'
 gem 'stripe'
 gem 'money-rails'
+gem 'pg_search', '~> 2.3.0'
 
 
 # Reduces boot times through caching; required in config/boot.rb
