@@ -34,7 +34,7 @@
           <div class="textcontainer">
             <h2><%= dish.name %></h2>
             <div class='priceandbutton d-flex flex-column'>
-              <h3 style="display: flex; align-items: center"><%= format "%0.2f", dish.price_cents %> €</h3>
+              <h3 style="display: flex; align-items: center"><%= format "%0.2f", dish.price %> €</h3>
               <div style="display: flex; align-items: center; justify-content: center;">
                 <div class="btn-plus" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
                   <%= simple_fields_for :order_dishes do |od| %>
@@ -73,41 +73,41 @@
 
   <div class="card-scroll">
     <div class='cards-container'>
-        <% @dishes.each do |dish| %>
-      <div class='dishcard' data-controller="change-qty">
-        <% if dish.photo.attached? %>
-          <%= link_to restaurant_dish_path(@restaurant, dish) do %>
-            <%= cl_image_tag dish.photo.key , :class => "dishimg" %>
+      <% @dishes.each do |dish| %>
+        <div class='dishcard' data-controller="change-qty">
+          <% if dish.photo.attached? %>
+            <%= link_to restaurant_dish_path(@restaurant, dish) do %>
+              <%= cl_image_tag dish.photo.key , :class => "dishimg" %>
+            <% end %>
+          <% else %>
+              <img src="/assets/images/logopladujoor" />
           <% end %>
-        <% else %>
-            <img src="/assets/images/logopladujoor" />
-        <% end %>
-          <div class="textcontainer">
-            <h2><%= dish.name %></h2>
-            <div class='priceandbutton d-flex flex-column'>
-              <h3 style="display: flex; align-items: center"><%= format "%0.2f", dish.price_cents %> €</h3>
-              <div style="display: flex; align-items: center; justify-content: center;">
-                <div class="btn-plus" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
-                  <%= simple_fields_for :order_dishes do |od| %>
-                    <%= od.input(
-                          dish.id,
+        <div class="textcontainer">
+          <h2><%= dish.name %></h2>
+          <div class='priceandbutton d-flex flex-column'>
+            <h3 style="display: flex; align-items: center"><%= format "%0.2f", dish.price %> €</h3>
+            <div style="display: flex; align-items: center; justify-content: center;">
+              <div class="btn-plus" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
+                <%= simple_fields_for :order_dishes do |od| %>
+                  <%= od.input(
+                        dish.id,
 
-                          readonly: true,
-                          label: false,
-                          wrapper_html: {style: "margin: 0;"},
-                          input_html: {
-                            value: 0,
-                            style: "background-color: white; border-color: white ; color: black; width: 50px; text-align: center",
-                            data: {target: "change-qty.input"}
-                          }
-                        ) %>
-                  <% end %>
-                <div class="btn-plus" data-action="click->change-qty#plus" style= "cursor: pointer;">+</div>
-              </div>
+                        readonly: true,
+                        label: false,
+                        wrapper_html: {style: "margin: 0;"},
+                        input_html: {
+                          value: 0,
+                          style: "background-color: white; border-color: white ; color: black; width: 50px; text-align: center",
+                          data: {target: "change-qty.input"}
+                        }
+                      ) %>
+                <% end %>
+              <div class="btn-plus" data-action="click->change-qty#plus" style= "cursor: pointer;">+</div>
             </div>
+          </div>
+          </div>
         </div>
-      </div>
-          <% end %>
+      <% end %>
     </div>
   </div>
   <%= f.submit( style: "border-color: white; background-color: #0087d3; color: white; width: 100%; margin-bottom: 50px") %>
