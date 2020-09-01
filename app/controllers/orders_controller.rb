@@ -33,13 +33,13 @@ class OrdersController < ApplicationController
         payment_method_types: ['card'],
         line_items: [{
           name: "Pladujoor",
-          images: ["https://res.cloudinary.com/ds0cha29d/image/upload/v1598952424/Pladujoor/logopdj2_ofyxv8.png"],
+          images: ["https://res.cloudinary.com/ds0cha29d/image/upload/v1598964394/Pladujoor/newlogo_xcozko.png"],
           amount: @totalprice.fractional,
           currency: 'eur',
           quantity: 1
         }],
         success_url: table_order_url(@order.table, @order),
-        cancel_url: table_order_url(@order.table, @order)
+        cancel_url: edit_table_order_url(@order.table, @order)
       )
       @order.update(checkout_session_id: session.id)
       redirect_to confirmation_table_order_path(@order.table, @order)
@@ -77,13 +77,13 @@ class OrdersController < ApplicationController
       payment_method_types: ['card'],
       line_items: [{
         name: "Pladujoor",
-        images: ["https://res.cloudinary.com/ds0cha29d/image/upload/v1598952424/Pladujoor/logopdj2_ofyxv8.png"],
+        images: ["https://res.cloudinary.com/ds0cha29d/image/upload/v1598964394/Pladujoor/newlogo_xcozko.png"],
         amount: @totalprice.fractional,
         currency: 'eur',
         quantity: 1
       }],
       success_url: table_order_url(@order.table, @order),
-      cancel_url: table_order_url(@order.table, @order)
+      cancel_url: edit_table_order_url(@order.table, @order)
     )
     @order.update(checkout_session_id: session.id)
     redirect_to confirmation_table_order_path(@order.table, @order)
