@@ -29,14 +29,14 @@
                       <%= simple_fields_for :order_dishes do |od| %>
                         <%= od.input(
                               dish.id,
-
                               readonly: true,
                               label: false,
                               wrapper_html: {style: "margin: 0;"},
                               input_html: {
                                 value: @order.dishes.count { |e| e == dish },
                                 style: "background-color: white; border-color: white ; color: black; width: 50px; text-align: center",
-                                data: {target: "change-qty.input"}
+                                data: {target: "change-qty.input"},
+                                class: 'qty'
                               }
                             ) %>
                       <% end %>
@@ -58,12 +58,16 @@
       <% end %>
     </div>
     <h3>|</h3>
-    <div class=" <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
+    <div class=" cartcount <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
+      <div class='cart'>
       <%= button_tag type: 'submit', class: "button postfix" do %>
         <i class="fas fa-shopping-cart"></i>
+      </div>
+      <div class='count'>
+        <span id="sum"></span>
+      </div>
       <% end %>
     </div>
   </div>
-
 <% end %>
 

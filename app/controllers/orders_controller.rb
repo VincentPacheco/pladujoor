@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
     #   @menu = @restaurant.menus.first
     # end
 
-    # -- NEW VERSION -- we directly create an order and go to its edit page 
+    # -- NEW VERSION -- we directly create an order and go to its edit page
 
     @table = Table.find(params[:table_id])
     @order = Order.new

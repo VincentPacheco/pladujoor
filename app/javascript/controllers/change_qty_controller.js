@@ -14,6 +14,7 @@ export default class extends Controller {
 
   connect() {
     console.log("Connected!");
+    this.totalQty();
   }
 
   plus() {
@@ -24,6 +25,7 @@ export default class extends Controller {
     }
 
     this.inputTarget.value = currentValue + 1;
+    this.totalQty()
   }
 
   minus() {
@@ -34,6 +36,16 @@ export default class extends Controller {
     }
 
     this.inputTarget.value = currentValue - 1;
+    this.totalQty()
+  }
+
+  totalQty() {
+    // console.log(document.querySelectorAll('.qty'))
+    const sum = Array.from(document.querySelectorAll('.qty'))
+                                   .map(input => parseInt(input.value, 10))
+                                   .reduce((acc, cur) => acc + cur, 0)
+
+    document.querySelector('#sum').innerText = sum
 
   }
 }

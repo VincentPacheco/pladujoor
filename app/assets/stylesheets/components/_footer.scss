@@ -16,7 +16,14 @@
   i {
     display: flex;
     align-items:center;
-    font-size: 22px;
+    font-size: 25px;
+  }
+  button {
+    border: none;
+    background-color: transparent;
+    i {
+      color: #ACB5BD;
+    }
   }
 }
 
@@ -26,8 +33,35 @@
 // }
 
 .footerblue a {
-  color: #0087D3 ;
+  color: #0087D3;
 }
 .footergrey a {
   color: #ACB5BD;
+}
+
+.cartcount {
+  display: flex;
+  flex-direction: row;
+  .postfix {
+    position: relative;
+  }
+}
+
+.count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: red;
+  border: 1px solid red;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 2px;
+  right: 61px;
+}
+
+#sum {
+  font-size: 15px;
 }
