@@ -6,18 +6,32 @@ class OrdersController < ApplicationController
   end
 
   def new
+    # -- PREVIOUS VERSION --
+
+    # @table = Table.find(params[:table_id])
+    # @restaurant = @table.restaurant
+    # @order = Order.new
+    # authorize @order
+    # if params[:query].present?
+    #   sql_query = "name ILIKE :query OR ingredient ILIKE :query"
+    #   @dishes = @restaurant.dishes.where(sql_query, query: "%#{params[:query]}%")
+    # else
+    #   @menu = @restaurant.menus.first
+    # end
+
+    # -- NEW VERSION -- we directly create an order and go to its edit page 
+
     @table = Table.find(params[:table_id])
-    @restaurant = @table.restaurant
     @order = Order.new
+    @order.table = @table
     authorize @order
-    if params[:query].present?
-      sql_query = "name ILIKE :query OR ingredient ILIKE :query"
-      @dishes = @restaurant.dishes.where(sql_query, query: "%#{params[:query]}%")
-    else
-      @menu = @restaurant.menus.first
-    end
+
+    @order.save!
+
+    redirect_to edit_table_order_path(@table, @order)
   end
 
+  # DEPRECATED: we won't use it anymore
   def create
     @order = Order.new
     @order.table_id = params[:table_id]
