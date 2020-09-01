@@ -33,6 +33,7 @@ gem 'rqrcode'
 gem 'stripe'
 gem 'money-rails'
 gem 'pg_search', '~> 2.3.0'
+gem "algoliasearch-rails"
 
 
 # Reduces boot times through caching; required in config/boot.rb
