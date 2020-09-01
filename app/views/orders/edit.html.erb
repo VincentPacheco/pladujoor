@@ -1,9 +1,86 @@
 <div class="container">
-  <input type="search" class='searchbar' placeholder="Search">
+<!--   <input type="search" class='searchbar' placeholder="Search">
+ -->
+  <%= form_tag edit_table_order_path, class: 'searchbar', method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: 'searchbar',
+      placeholder: "Search"
+    %>
+  <% end %>
 
   <div class='top-page'>
     <h1><%= @restaurant.name%></h1>
   </div>
+
+</div>
+
+<% if params[:query].present? %>
+
+<div class="container">
+
+
+
+  <%= simple_form_for [@table, @order] do |f| %>
+
+  <div class="card-scroll">
+    <div class='cards-container'>
+      <% @dishes.each do |dish| %>
+        <div class='dishcard' data-controller="change-qty">
+          <% if dish.photo.attached? %>
+            <%= link_to restaurant_dish_path(@restaurant, dish) do %>
+              <%= cl_image_tag dish.photo.key , :class => "dishimg" %>
+            <% end %>
+          <% else %>
+              <img src="/assets/images/logopladujoor" />
+          <% end %>
+        <div class="textcontainer">
+          <h2><%= dish.name %></h2>
+          <div class='priceandbutton d-flex flex-column'>
+            <h3 style="display: flex; align-items: center"><%= format "%0.2f", dish.price %> €</h3>
+            <div style="display: flex; align-items: center; justify-content: center;">
+              <div class="btn-plus" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
+                <%= simple_fields_for :order_dishes do |od| %>
+                  <%= od.input(
+                        dish.id,
+                        readonly: true,
+                        label: false,
+                        wrapper_html: {style: "margin: 0;"},
+                        input_html: {
+                          value: 0,
+                          style: "background-color: white; border-color: white ; color: black; width: 50px; text-align: center",
+                          data: {target: "change-qty.input"}
+                        }
+                      ) %>
+                <% end %>
+                <div class="btn-plus" data-action="click->change-qty#plus" style= "cursor: pointer;">+</div>
+              </div>
+            </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class=" <%=  menu_edit? ? 'footerblue' : 'footergrey' %>">
+      <%= link_to edit_table_order_path(@order.table, @order) do %>
+        <i class="fas fa-book-open"></i>
+      <% end %>
+    </div>
+    <h3>|</h3>
+    <div class=" <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
+      <%= button_tag type: 'submit', class: "button postfix", style:"border: none; background-color: white; color: #acb5bd; "  do %>
+        <i class="fas fa-shopping-cart"></i>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+
+<% else %>
+
+<div class="container">
 
   <%= simple_form_for [@table, @order] do |f| %>
     <% @menu.categories.each do |category| %>
@@ -66,4 +143,4 @@
   </div>
 
 <% end %>
-
+<% end %>
