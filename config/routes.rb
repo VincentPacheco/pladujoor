@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#home'
+  get 'basic-qr-code-reader', to: 'basic_qr_codes#index'
+  root to: 'pages#home' do
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
+
+
   resources :restaurants do
     resources :menus do
       resources :categories
