@@ -8,9 +8,14 @@ class OrdersController < ApplicationController
   def new
     @table = Table.find(params[:table_id])
     @restaurant = @table.restaurant
-    @menu = @restaurant.menus.first
     @order = Order.new
     authorize @order
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR ingredient ILIKE :query"
+      @dishes = @restaurant.dishes.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @menu = @restaurant.menus.first
+    end
   end
 
   def create
@@ -90,7 +95,7 @@ class OrdersController < ApplicationController
     @orderdishes = @order.order_dishes
     @dishes = @order.dishes
     @menu_test = Money.new(@dishes.select('id, name, price_cents').sum('price_cents'))
-    
+
   end
 
   def show
