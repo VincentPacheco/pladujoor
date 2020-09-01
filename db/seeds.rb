@@ -49,7 +49,7 @@ menu = Menu.create!(restaurant: restaurant, name: "Summer Menu")
       price_cents: 950,
       category: cat,
       restaurant: restaurant)
-    burrata.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606069/Pladujoor/burrata-et-tomates-cerises_dup6ye.jpg'), filename: 'burrata.jpg', content_type: 'image/jpg')
+    burrata.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598995137/Pladujoor/Burrata2_xwgvc8.jpg'), filename: 'burrata.jpg', content_type: 'image/jpg')
 
 
   elsif cat_name == "Dishes"

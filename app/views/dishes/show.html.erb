@@ -3,7 +3,7 @@
     <div class='top-right'>
       <h4 class="mr-2">Back</h4>
       <%= link_to session[:history].last do %>
-        <p class="btn-plus"><i class="fas fa-angle-left"></i></p>
+        <p class="btn-back"><i class="fas fa-angle-left"></i></p>
       <% end %>
   </div>
 </div>
@@ -32,7 +32,7 @@
         <% else %>
           <%# dish already added, add - / + buttons %>
           <div class='btnqty'>
-            <div class="btn-plus2" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
+            <div class="btn-lessmax" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
             <%= od.input(
                   @dish.id,
                   readonly: true,
@@ -44,7 +44,7 @@
                     data: {target: "change-qty.input"}
                   }
                 ) %>
-            <div class="btn-plus2" data-action="click->change-qty#plus" style= "cursor: pointer;">+</div>
+            <div class="btn-plusmax" data-action="click->change-qty#plus" style= "cursor: pointer;">+</div>
           </div>
         <% end %>
       <% end %>
@@ -67,8 +67,8 @@
             <div class="btn-plus2" data-action="click->change-qty#plus" style= "cursor: pointer;">+</div>
           </div>
       <% end %>
-    <% end %>      
-    
+    <% end %>
+
     <%= f.submit "ADD", class: "btnadd" %>
   </div>
 <% end %>
