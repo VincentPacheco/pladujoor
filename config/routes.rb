@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'qr_codes/new'
+  get 'qr_codes/create'
   devise_for :users
   get 'basic-qr-code-reader', to: 'basic_qr_codes#index'
   root to: 'pages#home' do
@@ -25,7 +27,12 @@ Rails.application.routes.draw do
     resources :dishes, only: :show
   end
 
+  resources :qr_codes, only: [:new, :create]
+
+  get 'qr_codes', to: "qr_codes#new"
+
   resources :tables
   get '/design', to: 'pages#design'
+
 
 end

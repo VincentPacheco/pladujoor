@@ -43,3 +43,22 @@
 <div class='lastp text-center pt-4'>
 <p>Thank you for you order ! We hope to see you soon !</p>
 </div>
+
+<div class="footer" >
+  <div class=" footerblue ">
+    <%= link_to new_table_order_path(@order.table) do %>
+      <i class="fas fa-book-open"></i>
+    <% end %>
+  </div>
+  <h3>|</h3>
+  <div class=" cartcount <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
+    <div class='cart'>
+    <%= button_tag type: 'submit', class: "button postfix" do %>
+      <i class="fas fa-shopping-cart"></i>
+    </div>
+    <div class='count'>
+      <span id="sum"></span>
+    </div>
+    <% end %>
+  </div>
+</div>
