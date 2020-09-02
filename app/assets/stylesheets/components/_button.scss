@@ -62,7 +62,6 @@
 
 .btnorder {
   display: flex;
-  width: 350px;
   justify-content: space-evenly;
   margin-top: 30px;
 }
@@ -96,7 +95,6 @@
 }
 
 .btnscancontinue {
-  width: 120px;
   background-color: #0087D3;
   box-shadow: $box-shadow;
   border-radius: 7px;
@@ -110,7 +108,6 @@
 }
 
 .btnscancontinue2 {
-  width: 130px;
   background-color: #0087D3;
   box-shadow: $box-shadow;
   border-radius: 7px;
