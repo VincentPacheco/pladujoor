@@ -43,7 +43,7 @@
         <h5>Price</h5>
         <% @dishes.select('id, price_cents').group('name').sum('price_cents').each do |dish| %>
           <div>
-            <%= humanized_money(Money.new(dish[1])) %>€
+            <%= humanized_money(Money.new(Dish.find_by(name: dish[0]).price_cents)) %>€
           </div>
         <% end %>
       </div>
