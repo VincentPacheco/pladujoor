@@ -8,40 +8,41 @@
   </div>
 </div>
 
+<div class="container">
+  <div class='summarycontainer'>
+    <div class='summarycontent'>
+      <div class='ordersummary'>
+        <h2>Summary</h2>
+        <h3>0rder: #<%= @order.id %> </h3>
+      </div>
+      <h4  class='pb-4'>Table <%= @order.table_id %></h4>
+      <table>
+      <thead><tr>
+      <th class='col-6'>ARTICLE</th>
+      <th class='col-3'>QTY</th>
+      <th class='col-3'>PRICE</th></tr>
+      </thead>
+      <tbody>
+      <% @priced_order.each do |order| %>
+      <tr>
+        <td class='col-6 orderborder'><%= truncate(order[1], length: 15)%></td>
+        <td class='col-3 orderborder'><%= order[0] %></td>
+        <td class='col-3'><%= format "%0.2f", order[2] %></td>
+      </tr>
+      <% end %>
+      </tbody>
+      </table>
 
-<div class='summarycontainer'>
-  <div class='summarycontent'>
-    <div class='ordersummary'>
-      <h2>Summary</h2>
-      <h3>0rder: #<%= @order.id %> </h3>
     </div>
-    <h4  class='pb-4'>Table <%= @order.table_id %></h4>
-    <table>
-    <thead><tr>
-    <th class='col-6'>ARTICLE</th>
-    <th class='col-3'>QTY</th>
-    <th class='col-3'>PRICE</th></tr>
-    </thead>
-    <tbody>
-    <% @priced_order.each do |order| %>
-    <tr>
-      <td class='col-6 orderborder'><%= truncate(order[1], length: 15)%></td>
-      <td class='col-3 orderborder'><%= order[0] %></td>
-      <td class='col-3'><%= format "%0.2f", order[2] %></td>
-    </tr>
-    <% end %>
-    </tbody>
-    </table>
-
+    <div class='summaryprice'>
+        <div><h2>Total:</h2></div>
+        <div><h2><%= format "%0.2f", @totalprice %> €</h2></div>
+    </div>
   </div>
-  <div class='summaryprice'>
-      <div><h2>Total:</h2></div>
-      <div><h2><%= format "%0.2f", @totalprice %> €</h2></div>
-  </div>
-</div>
 
-<div class='lastp text-center pt-4'>
-<p>Thank you for you order ! We hope to see you soon !</p>
+  <div class='lastp text-center pt-4'>
+  <p>Thank you for you order ! We hope to see you soon !</p>
+  </div>
 </div>
 
 <div class="footer" >
@@ -55,9 +56,6 @@
     <div class='cart'>
     <%= button_tag type: 'submit', class: "button postfix" do %>
       <i class="fas fa-shopping-cart"></i>
-    </div>
-    <div class='count'>
-      <span id="sum"></span>
     </div>
     <% end %>
   </div>
