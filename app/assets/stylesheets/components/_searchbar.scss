@@ -7,6 +7,9 @@
   font-size: 18px;
   padding-left: 15px;
   margin-bottom: 20px;
+  input {
+    color: white;
+  }
 }
 
 input {
@@ -15,6 +18,7 @@ input {
   color: #6A6A6A;
   font-size: 1.5em;
 }
+
 
 .search-input {
   display: flex;
@@ -26,4 +30,8 @@ input {
   right: 21%;
   top: 10%;
   color: grey;
+
+.fas .fa-search {
+  color: white;
+
 }
