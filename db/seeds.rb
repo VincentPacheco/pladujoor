@@ -142,7 +142,7 @@ menu = Menu.create!(restaurant: restaurant, name: "Summer Menu")
     water.photo.attach(io: URI.open('https://res.cloudinary.com/ds0cha29d/image/upload/v1598606072/Pladujoor/water_ompxow.jpg'), filename: 'water.jpg', content_type: 'image/jpg')
 
     wine = Dish.create!(name: "White wine",
-      ingredient: "A glass of Cinque Terre Bianco, 2017"
+      ingredient: "A glass of Cinque Terre Bianco, 2017",
       price_cents: 500,
       category: cat,
       restaurant: restaurant)
