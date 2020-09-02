@@ -1,0 +1,7 @@
+<h1>QrCodes#new</h1>
+<p>Find me in app/views/qr_codes/new.html.erb</p>
+<%= form_for :qr_code, url: qr_codes_path do |f| %>
+  <%= f.label :text %>
+  <%= f.text_field :text %>
+  <%= f.submit %>
+<% end %>
