@@ -1,14 +1,22 @@
 <div class="container">
   <%= form_tag edit_table_order_path(@order.table, @order), class: 'searchbar', method: :get do %>
-    <div style="display: flex" >
+    <div class="search-input" >
       <%= text_field_tag :query,
         params[:query],
         class: 'searchbar',
+        id: 'searchInput',
         placeholder: "Search"
       %>
+
+      <%= submit_tag "Search", class: "btn btn-primary searchbar", style: "width: 20%; background-color: #0087d3" %>
+      <div class="clear-input" >
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+
       <%= button_tag type: 'submit', class: "btn btn-primary searchbar", style: "width: 20%; background-color: #0087d3;" do %>
         <i class="fas fa-search"></i>
       <% end %>
+
     </div>
   <% end %>
 
