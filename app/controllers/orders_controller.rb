@@ -95,6 +95,7 @@ class OrdersController < ApplicationController
 
     if @totalprice == 0
       flash[:alert] = "Your cart is empty!"
+      redirect_to edit_table_order_path(@order.table, @order)
     else
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
