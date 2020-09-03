@@ -136,9 +136,8 @@
   </div>
     <div class="footer" >
     <div class=" <%=  menu_edit? ? 'footerblue' : 'footergrey' %>">
-      <%= link_to edit_table_order_path(@order.table, @order), data: { turbolinks: false } do %>
-        <i class="fas fa-book-open"></i>
-      <% end %>
+        <i class="fas fa-book-open" style="color: #0087d3"></i>
+
     </div>
     <div class=" cartcount <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
       <div class='cart'>
