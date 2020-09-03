@@ -42,9 +42,7 @@
 .cartcount {
   display: flex;
   flex-direction: row;
-  .postfix {
-    position: relative;
-  }
+
 }
 
 .count {
@@ -57,9 +55,10 @@
   border-radius: 50%;
   width: 28px;
   height: 28px;
-  position: absolute;
-  top: 2px;
-  right: 61px;
+  position: relative;
+  bottom: 10px;
+  right: 10px;
+
 }
 
 #sum {

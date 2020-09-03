@@ -145,11 +145,13 @@
     <div class=" cartcount <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
       <div class='cart'>
       <%= button_tag type: 'submit', class: "button postfix" do %>
-        <i class="fas fa-shopping-cart"></i>
+        <i class="fas fa-shopping-cart">
+          <div class='count'>
+            <span id="sum"></span>
+          </div>
+        </i>
       </div>
-      <div class='count'>
-        <span id="sum"></span>
-      </div>
+
       <% end %>
     </div>
   </div>
