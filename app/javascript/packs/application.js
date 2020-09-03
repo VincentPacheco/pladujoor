@@ -48,7 +48,7 @@ var time_limit = ((minutes * 60 ) * 1000);
 setTimeout(
   function()
   {
-    alert( 'Your dish is coming' );
+
   }, time_limit );
 
 var days, hours, minutes, seconds; // variables for time units
