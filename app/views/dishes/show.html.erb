@@ -2,7 +2,7 @@
   <h1>Presto Fresco</h1>
     <div class='top-right'>
       <h4 class="mr-2">Back</h4>
-      <%= link_to session[:history].last do %>
+      <%= link_to edit_table_order_path(@order.table, @order), class: "btn-back", data: { turbolinks: 'false' } do %>
         <p class="btn-back"><i class="fas fa-angle-left"></i></p>
       <% end %>
   </div>
