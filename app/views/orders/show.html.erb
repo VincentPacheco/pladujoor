@@ -3,34 +3,41 @@
     <h1>Presto Fresco</h1>
   </div>
   <div class='summarycontainer'>
-    <div class='summarycontent'>
-      <div class='ordersummary'>
-        <h2>Summary</h2>
-        <h3>0rder: #<%= @order.id %> </h3>
-      </div>
-      <h4  class='pb-4'>Table <%= @order.table_id %></h4>
-      <table>
-      <thead><tr>
-      <th class='col-6'>ARTICLE</th>
-      <th class='col-3'>QTY</th>
-      <th class='col-3'>PRICE</th></tr>
-      </thead>
-      <tbody>
-      <% @priced_order.each do |order| %>
-      <tr>
-        <td class='col-6 orderborder'><%= truncate(order[1], length: 15)%></td>
-        <td class='col-3 orderborder'><%= order[0] %></td>
-        <td class='col-3'><%= format "%0.2f", order[2] %></td>
-      </tr>
-      <% end %>
-      </tbody>
-      </table>
+  <i class="fas fa-utensils"></i>
 
-    </div>
-    <div class='summaryprice'>
-        <div><h2>Total:</h2></div>
-        <div><h2><%= format "%0.2f", @totalprice %> €</h2></div>
-    </div>
+
+  <div id="ten-countdown" style= ""></div>
+<script>function countdown( elementName, minutes, seconds )
+{
+    var element, endTime, hours, mins, msLeft, time;
+
+    function twoDigits( n )
+    {
+        return (n <= 9 ? "0" + n : n);
+    }
+
+    function updateTimer()
+    {
+        msLeft = endTime - (+new Date);
+        if ( msLeft < 1000 ) {
+            element.innerHTML = "Time is up!";
+        } else {
+            time = new Date( msLeft );
+            hours = time.getUTCHours();
+            mins = time.getUTCMinutes();
+            element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
+            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+        }
+    }
+
+    element = document.getElementById( elementName );
+    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+    updateTimer();
+}
+
+countdown( "ten-countdown", 10, 0 );
+</script>
+
   </div>
 
   <div class='lastp text-center pt-4'>
@@ -44,7 +51,7 @@
       <i class="fas fa-book-open"></i>
     <% end %>
   </div>
-  <h3>|</h3>
+
   <div class=" cartcount <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
     <div class='cart'>
     <%= button_tag type: 'submit', class: "button postfix" do %>
