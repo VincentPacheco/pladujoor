@@ -17,7 +17,7 @@
 <% else %>
   <div class="footer">
     <div class=" <%=  menu_edit? ? 'footerblue' : 'footergrey' %>">
-      <%= link_to edit_table_order_path(@order.table, @order) do %>
+      <%= link_to edit_table_order_path(@order.table, @order), class: "btn-back", data: { turbolinks: 'false' } do %>
         <i class="fas fa-book-open"></i>
       <% end %>
     </div>
