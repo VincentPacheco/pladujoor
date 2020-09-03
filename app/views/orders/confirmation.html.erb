@@ -34,8 +34,8 @@
         <%# <% @order.order_dishes.select('dish_id').group('dish_id').count.each do |order| %>
         <% @order.order_dishes.select('dish_id').group('dish_id').count.map{|id,nbr| {Dish.find(id).name => nbr}}.sort{|a,b| a.keys <=> b.keys}.each do |order| %>
           <div>
-            <%= order.values[0] %>
 
+            <%= link_to order.values[0] ,order_dish_path(@order, Dish.find_by(name: order.keys))  %>
           </div>
         <% end %>
       </div>
