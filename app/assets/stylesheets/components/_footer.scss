@@ -1,7 +1,7 @@
 .footer {
 
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -16,7 +16,7 @@
   i {
     display: flex;
     align-items:center;
-    font-size: 25px;
+    font-size: 35px;
   }
   button {
     border: none;
