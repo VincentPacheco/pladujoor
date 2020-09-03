@@ -118,6 +118,8 @@ class OrdersController < ApplicationController
 
   def confirmation
     @order = Order.find(params[:id])
+    @table = Table.find(params[:table_id])
+    @dishe_ids_with_quantity = @order.order_dishes.group(:dish_id).count
     authorize @order
     @orderdishes = @order.order_dishes
     @dishes = @order.dishes
