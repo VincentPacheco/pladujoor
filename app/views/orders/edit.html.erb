@@ -75,7 +75,7 @@
     <h3>|</h3>
     <div class=" cartcount <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
       <div class='cart'>
-      <%= button_tag type: 'submit', class: "button postfix" do %>
+      <%= link_to confirmation_table_order_path(@order.table, @order), class: "button postfix", data: { turbolinks: false } do %>
         <i class="fas fa-shopping-cart"></i>
       </div>
       <div class='count'>
@@ -142,7 +142,7 @@
     </div>
     <div class=" cartcount <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
       <div class='cart'>
-      <%= button_tag type: 'submit', class: "button postfix" do %>
+        <%= link_to confirmation_table_order_path(@order.table, @order), class: "button postfix", data: { turbolinks: false } do %>
         <i class="fas fa-shopping-cart">
           <div class='count'>
             <span id="sum"></span>
