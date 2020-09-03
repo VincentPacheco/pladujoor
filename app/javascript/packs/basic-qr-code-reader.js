@@ -9,7 +9,7 @@ codeReader
     console.log(result.text)
 
     document.getElementById('link').setAttribute('href', result.text );
-    document.getElementById('link').setAttribute('style', 'background-color: blue; padding: 15px; border-radius: 5px; color: white; text-decoration: none');
+    document.getElementById('link').setAttribute('style', 'background-color: #0087d3; padding: 15px; border-radius: 5px; color: white; text-decoration: none; font-size: 150%');
     document.getElementById('link').innerHTML = 'Discover the menu';
   })
   .catch(err => console.error(err));
