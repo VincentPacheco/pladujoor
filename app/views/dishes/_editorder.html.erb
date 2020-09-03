@@ -1,0 +1,52 @@
+<%= simple_form_for [table, currentorder] do |f| %>
+<div class='lastcontainer'>
+  <div class='btnbottom' data-controller="change-qty">
+    <%= simple_fields_for :order_dishes do |od| %>
+      <% @dishe_ids_with_quantity.each do |dish_id, dish_quantity| %>
+        <% if dish_id != dish.id %>
+          <%# re-add the other dishes as hidden inputs %>
+          <%= od.input dish_id, as: :hidden, input_html: { value: dish_quantity } %>
+        <% else %>
+          <%# dish already added, add - / + buttons %>
+          <div class='btnqty2'>
+            <div class="btn-lessmax" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
+            <%= od.input(
+                  dish.id,
+                  readonly: true,
+                  label: false,
+                  wrapper_html: {style: "margin: 0;"},
+                  input_html: {
+                    value: currentorder.dishes.count { |e| e == dish },
+                    style: "background-color: white; border-color: white ; color: black; width: 50px; text-align: center; font-size: 32px;%",
+                    data: {target: "change-qty.input"}
+                  }
+                ) %>
+            <div class="btn-plusmax" data-action="click->change-qty#plus" style= "cursor: pointer;">+</div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <%# dish not already added, add - / + buttons %>
+      <% unless currentorder.dish_ids.include?(dish.id) %>
+        <div class='btnqty2'>
+            <div class="btn-plus2" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
+            <%= od.input(
+                  dish.id,
+                  readonly: true,
+                  label: false,
+                  wrapper_html: {style: "margin: 0;"},
+                  input_html: {
+                    value: 0,
+                    style: "background-color: white; border-color: white ; color: black; width: 70px; text-align: center; font-size: 32px;",
+                    data: {target: "change-qty.input"}
+                  }
+                ) %>
+            <div class="btn-plus2" data-action="click->change-qty#plus" style= "cursor: pointer;">+</div>
+          </div>
+      <% end %>
+    <% end %>
+
+    <%= f.submit "UPDATE", class: "btnaddmodal" %>
+  </div>
+</div>
+<% end %>
