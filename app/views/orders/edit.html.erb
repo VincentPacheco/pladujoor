@@ -7,7 +7,6 @@
         id: 'searchInput',
         placeholder: "Search"
       %>
-      <%#= submit_tag "Search", class: "btn btn-primary searchbar", style: "width: 20%; background-color: #0087d3" %>
       <div class="clear-input" >
         <i class="fa fa-times" aria-hidden="true"></i>
       </div>
@@ -75,7 +74,7 @@
     <h3>|</h3>
     <div class=" cartcount <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
       <div class='cart'>
-      <%= link_to confirmation_table_order_path(@order.table, @order), class: "button postfix", data: { turbolinks: false } do %>
+      <%= button_tag type: 'submit', class: "button postfix" do %>
         <i class="fas fa-shopping-cart"></i>
       </div>
       <div class='count'>
@@ -142,12 +141,12 @@
     </div>
     <div class=" cartcount <%=  cart_index? ? 'footerblue' : 'footergrey' %>">
       <div class='cart'>
-        <%= link_to confirmation_table_order_path(@order.table, @order), class: "button postfix", data: { turbolinks: false } do %>
+      <%= button_tag type: 'submit', class: "button postfix" do %>
         <i class="fas fa-shopping-cart">
-        </i>
           <div class='count'>
             <span id="sum"></span>
           </div>
+        </i>
       </div>
 
       <% end %>
