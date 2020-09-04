@@ -42,7 +42,7 @@ import "controllers"
 
   var minutes = $( '#set-time' ).val();
 
-var target_date = new Date().getTime() + ((minutes * 600 ) * 1000); // set the countdown date
+var target_date = new Date().getTime() + ((minutes * 60 ) * 1000); // set the countdown date
 var time_limit = ((minutes * 60 ) * 1000);
 //set actual timer
 
@@ -89,7 +89,7 @@ if ( seconds_left >= 0 ) {
   seconds = pad( parseInt( seconds_left % 60 ) );
 
   // format countdown string + set tag value
-  countdown.innerHTML = minutes + " min";
+  countdown.innerHTML = minutes + " : " + seconds;
 
 
 
