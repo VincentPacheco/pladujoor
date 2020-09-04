@@ -39,8 +39,7 @@
               <h2><%= dish.name %><%= dish.price %></h2>
               <div class='priceandbutton'>
                 <div class='linefix'>
-                <p><%= dish.price %></p>
-                  <h3><%= dish.price %> €</h3>
+                  <p><%= dish.price %></p>
                   <div class='hiddendiv' style="display: flex; align-items: center; justify-content: center;">
                     <div class="btn-less" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
                       <%= simple_fields_for :order_dishes do |od| %>
@@ -107,8 +106,6 @@
                 <div class='priceandbutton'>
                   <div class='linefix'>
                     <p><%= dish.price %></p>
-                    <h3><%= dish.price %> €</h3>
-                    <h3><%= dish.price %> €</h3>
                     <div class='hiddendiv' style="display: flex; align-items: center; justify-content: center;">
                       <div class="btn-less" data-action="click->change-qty#minus" style= "cursor: pointer;">-</div>
                         <%= simple_fields_for :order_dishes do |od| %>
