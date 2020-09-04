@@ -45,11 +45,13 @@ import "controllers"
 var target_date = new Date().getTime() + ((minutes * 60 ) * 1000); // set the countdown date
 var time_limit = ((minutes * 60 ) * 1000);
 //set actual timer
+
 setTimeout(
   function()
   {
-    alert( 'Your dish is coming' );
+
   }, time_limit );
+
 
 var days, hours, minutes, seconds; // variables for time units
 
@@ -87,7 +89,7 @@ if ( seconds_left >= 0 ) {
   seconds = pad( parseInt( seconds_left % 60 ) );
 
   // format countdown string + set tag value
-  countdown.innerHTML = "<span>" + hours + ":</span><span>" + minutes + ":</span><span>" + seconds + "</span>";
+  countdown.innerHTML = minutes + " : " + seconds;
 
 
 

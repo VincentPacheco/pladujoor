@@ -36,9 +36,9 @@
           <button type="button" id='btnmodify' data-toggle="modal" data-target="#exampleModal-<%= order.keys[0].downcase.parameterize %>">
             <%=order.values[0] %>
           </button>
-          <div class="modal fade" id="exampleModal-<%= order.keys[0].downcase.parameterize %>" style='top: 5000px;' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content" style="height: 120px; position: fixed; bottom: 0; justify-content: center; left: 0; border: none;">
+          <div class="modal fade" id="exampleModal-<%= order.keys[0].downcase.parameterize %>" style='' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="margin-top: 130%;">
+              <div class="modal-content" style="height: 120px; justify-content: center;  border: none;">
                 <div class="modal-header" style='display: none;'>
                   <h5 class="modal-title" id="exampleModalLabel">Change quantity</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">

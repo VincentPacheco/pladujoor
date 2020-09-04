@@ -29,13 +29,13 @@ background: #f1f1f1;
   color: #fff;
   position: relative;
   z-index: 1;
-text-shadow: 1px 1px 0px #ccc;
+/* text-shadow: 1px 1px 0px #ccc; */
   display: inline-block;
   font-family: Arial, sans-serif;
   text-align: center;
 
   padding: 20px;
-  border-radius: 5px 5px 0 0;
+  border-radius: 5px;
   font-size: 48px;
   font-weight: thin;
   display: block;
@@ -88,10 +88,20 @@ text-shadow: 1px 1px 0px #ccc;
   </div>
   <div class='summarycontainer'>
   <div class='lastp text-center pt-4'>
-    <h3>Presto Fresco</h3>
-    <h4>Congratulations!</h4>
-    <h1>Your order is being processed!</h1>
-    <i class="fas fa-utensils"></i>
+    <h3 style="
+    font-size: 32px;
+    margin-bottom: 20px;
+">Presto Fresco</h3>
+    <i class="fas fa-utensils" style="
+    font-size: 24px;
+    color: #8a949a;"></i>
+    <h4 style="
+    font-weight: 400;
+">Congratulations!</h4>
+    <h1 style="
+    font-weight: 400;
+">Your order is being processed!</h1>
+
     <!-- <p>It will be ready within :</p> -->
 <input type="hidden" id="set-time" value="1"/>
 <div id="countdown">
@@ -99,9 +109,6 @@ text-shadow: 1px 1px 0px #ccc;
   <div id='tiles' class="color-full"></div>
   <div class="countdown-label">Time Remaining</div>
 </div>
-  <div class='lastp text-center pt-4'>
-  <p>Thank you for you order ! <br> We hope to see you soon !</p>
-  </div>
   </div>
   </div>
 
