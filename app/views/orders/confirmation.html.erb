@@ -9,78 +9,80 @@
   </div>
 </div>
 
-<div class='summarycontainer'>
-  <div class='summarycontent'>
-    <div class='ordersummary'>
-      <h2>Summary</h2>
-      <h3>0rder: #<%= @order.id %> </h3>
-    </div>
-    <h4>Table <%= @order.table_id %></h4>
-    <% x = 0 %>
-    <div class='row textsize'>
-      <div class='col-6 orderborder'>
-        <h5>ARTICLES</h5>
-        <% @dishes.select('name').group('name').sum('price_cents').each do |dish| %>
-          <div class='ordermargin'>
-            <%= truncate(dish[0], length: 17)%>
-          </div>
-        <% end %>
+<div class='finalcontainer'>
+  <div class='summarycontainer'>
+    <div class='summarycontent'>
+      <div class='ordersummary'>
+        <h2>Summary</h2>
+        <h3>0rder: #<%= @order.id %> </h3>
       </div>
-      <div class='col-3 orderborder text-center'>
-        <h5>QTY</h5>
-        <%#@order.order_dishes.joins(:dishes).order("name  desc").select('dish_id').group('dish_id').count.each do |order| %>
+      <h4>Table <%= @order.table_id %></h4>
+      <% x = 0 %>
+      <div class='row textsize'>
+        <div class='col-6 orderborder'>
+          <h5>ARTICLES</h5>
+          <% @dishes.select('name').group('name').sum('price_cents').each do |dish| %>
+            <div class='ordermargin'>
+              <%= truncate(dish[0], length: 17)%>
+            </div>
+          <% end %>
+        </div>
+        <div class='col-3 orderborder text-center'>
+          <h5>QTY</h5>
+          <%#@order.order_dishes.joins(:dishes).order("name  desc").select('dish_id').group('dish_id').count.each do |order| %>
 
-        <%# <% @order.order_dishes.select('dish_id').group('dish_id').count.each do |order| %>
+          <%# <% @order.order_dishes.select('dish_id').group('dish_id').count.each do |order| %>
 
-        <% @order.order_dishes.select('dish_id').group('dish_id').count.map{|id,nbr| {Dish.find(id).name => nbr}}.sort{|a,b| a.keys <=> b.keys}.each do |order| %>
-          <button type="button" id='btnmodify' data-toggle="modal" data-target="#exampleModal-<%= order.keys[0].downcase.parameterize %>">
-            <%=order.values[0] %>
-          </button>
-          <div class="modal fade" id="exampleModal-<%= order.keys[0].downcase.parameterize %>" style='' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document" style="margin-top: 130%;">
-              <div class="modal-content" style="height: 120px; justify-content: center;  border: none;">
-                <div class="modal-header" style='display: none;'>
-                  <h5 class="modal-title" id="exampleModalLabel">Change quantity</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body" style='background-color: white; border-radius: 9px;'>
-                  <%= render 'dishes/editorder', currentorder: Order.find(params[:id]), table: @table, dish: Dish.find_by(name: order.keys[0]) %>
+          <% @order.order_dishes.select('dish_id').group('dish_id').count.map{|id,nbr| {Dish.find(id).name => nbr}}.sort{|a,b| a.keys <=> b.keys}.each do |order| %>
+            <button type="button" id='btnmodify' data-toggle="modal" data-target="#exampleModal-<%= order.keys[0].downcase.parameterize %>">
+              <%=order.values[0] %>
+            </button>
+            <div class="modal fade" id="exampleModal-<%= order.keys[0].downcase.parameterize %>" style='' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document" style="margin-top: 130%;">
+                <div class="modal-content" style="height: 120px; justify-content: center;  border: none;">
+                  <div class="modal-header" style='display: none;'>
+                    <h5 class="modal-title" id="exampleModalLabel">Change quantity</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" style='background-color: white; border-radius: 9px;'>
+                    <%= render 'dishes/editorder', currentorder: Order.find(params[:id]), table: @table, dish: Dish.find_by(name: order.keys[0]) %>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-        <% end %>
-      </div>
-      <div class='col-3 text-center' >
-        <h5>Price</h5>
-        <% @dishes.select('id, price_cents').group('name').sum('price_cents').each do |dish| %>
-          <div class='ordermargin'>
-            <%= humanized_money(Money.new(Dish.find_by(name: dish[0]).price_cents)) %>€
-          </div>
-        <% end %>
+          <% end %>
+        </div>
+        <div class='col-3 text-center' >
+          <h5>Price</h5>
+          <% @dishes.select('id, price_cents').group('name').sum('price_cents').each do |dish| %>
+            <div class='ordermargin'>
+              <%= humanized_money(Money.new(Dish.find_by(name: dish[0]).price_cents)) %>€
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
+    <div class='summaryprice'>
+        <div><h2>Total:</h2></div>
+        <div><h2><%= humanized_money(@menu_test) %> €</h2></div>
+    </div>
   </div>
-  <div class='summaryprice'>
-      <div><h2>Total:</h2></div>
-      <div><h2><%= humanized_money(@menu_test) %> €</h2></div>
-  </div>
-</div>
 
-<div class='btnorder'>
-      <button id="pay" class="btn btn-primary" style='background-color: #0087D3; font-family: ;font-weight: 500; width: 110px; height: 35px; border-radius: 7px;'>PAY</button>
+  <div class='btnorder'>
+        <button id="pay" class="btn btn-primary" style='background-color: #0087D3; font-family: ;font-weight: 500; width: 110px; height: 35px; border-radius: 7px;'>PAY</button>
 
-      <script src="https://js.stripe.com/v3/"></script>
-      <script>
-        const paymentButton = document.getElementById('pay');
-        paymentButton.addEventListener('click', () => {
-          const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
-          stripe.redirectToCheckout({
-            sessionId: '<%= @order.checkout_session_id %>'
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+          const paymentButton = document.getElementById('pay');
+          paymentButton.addEventListener('click', () => {
+            const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+            stripe.redirectToCheckout({
+              sessionId: '<%= @order.checkout_session_id %>'
+            });
           });
-        });
-      </script>
+        </script>
+</div>
 </div>
